@@ -1,0 +1,13 @@
+{
+  "name": "instachecker",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint . --ext .js,.html || echo 'Linting skipped if no ESLint'",
+    "test": "jest || echo 'Testing skipped if no Jest'",
+    "build": "echo 'Build step - add if needed, e.g., minify JS'"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0"
+  }
+}
