@@ -1,8 +1,8 @@
-import { StateManager } from './modules/state-manager.js';
-import { UIManager } from './modules/ui-manager.js';
-import { InstagramProcessor } from './modules/instagram-processor.js';
-import { Helpers } from './utils/helpers.js';
-import { ExportUtils } from './utils/export-utils.js';
+import { StateManager } from "./modules/state-manager.js";
+import { UIManager } from "./modules/ui-manager.js";
+import { InstagramProcessor } from "./modules/instagram-processor.js";
+import { Helpers } from "./utils/helpers.js";
+import { ExportUtils } from "./utils/export-utils.js";
 
 /**
  * Controlador principal da aplicação InstaChecker
@@ -19,9 +19,9 @@ export class InstaCheckerApp {
    * Inicializa a aplicação
    */
   init() {
-    console.log('InstaChecker iniciado');
+    console.log("InstaChecker iniciado");
     this.ui.resetStatus();
-    
+
     // Reset inicial
     this.state.reset();
   }
@@ -35,13 +35,13 @@ export class InstaCheckerApp {
 
     // Upload de arquivos
     this._setupFileUpload(elements);
-    
+
     // Controles de filtro e ordenação
     this._setupFilters(elements);
-    
+
     // Abas
     this._setupTabs(elements);
-    
+
     // Botões de ação
     this._setupActionButtons(elements);
   }
@@ -54,7 +54,7 @@ export class InstaCheckerApp {
   _setupFileUpload(elements) {
     // Input de arquivo
     if (elements.fileInput) {
-      elements.fileInput.addEventListener('change', (event) => {
+      elements.fileInput.addEventListener("change", (event) => {
         const files = Array.from(event.target.files || []);
         if (files.length) {
           this._handleFiles(files);
@@ -64,7 +64,7 @@ export class InstaCheckerApp {
 
     // Botão de seleção
     if (elements.pickBtn) {
-      elements.pickBtn.addEventListener('click', () => {
+      elements.pickBtn.addEventListener("click", () => {
         elements.fileInput?.click();
       });
     }
@@ -89,7 +89,7 @@ export class InstaCheckerApp {
       elements.uploader.addEventListener("drop", async (event) => {
         event.preventDefault();
         elements.uploader.classList.remove("dragging");
-        
+
         const files = Array.from(event.dataTransfer?.files || []);
         if (files.length) {
           await this._handleFiles(files);
@@ -110,14 +110,14 @@ export class InstaCheckerApp {
         this.state.setFilter(value);
       }, 200);
 
-      elements.searchInput.addEventListener('input', (event) => {
-        debouncedSearch(event.target.value || '');
+      elements.searchInput.addEventListener("input", (event) => {
+        debouncedSearch(event.target.value || "");
       });
     }
 
     // Seletor de ordenação
     if (elements.sortSelect) {
-      elements.sortSelect.addEventListener('change', (event) => {
+      elements.sortSelect.addEventListener("change", (event) => {
         this.state.setSort(event.target.value);
       });
     }
@@ -131,7 +131,7 @@ export class InstaCheckerApp {
   _setupTabs(elements) {
     elements.tabButtons.forEach((button) => {
       // Evento do Bootstrap
-      button.addEventListener('shown.bs.tab', (event) => {
+      button.addEventListener("shown.bs.tab", (event) => {
         const view = event.target.dataset.view;
         if (view) {
           this.state.setActiveView(view);
@@ -139,7 +139,7 @@ export class InstaCheckerApp {
       });
 
       // Fallback para clique direto
-      button.addEventListener('click', (event) => {
+      button.addEventListener("click", (event) => {
         const view = event.currentTarget.dataset.view;
         if (view) {
           this.state.setActiveView(view);
@@ -156,7 +156,7 @@ export class InstaCheckerApp {
   _setupActionButtons(elements) {
     // Botões de cópia específicos
     elements.copyButtons.forEach((button) => {
-      button.addEventListener('click', () => {
+      button.addEventListener("click", () => {
         const view = button.dataset.copy;
         if (view) {
           this._copyList(view, false);
@@ -166,7 +166,7 @@ export class InstaCheckerApp {
 
     // Cópia da visualização atual
     if (elements.copyCurrent) {
-      elements.copyCurrent.addEventListener('click', () => {
+      elements.copyCurrent.addEventListener("click", () => {
         const viewState = this.state.getViewState();
         this._copyList(viewState.active, true);
       });
@@ -174,7 +174,7 @@ export class InstaCheckerApp {
 
     // Botão limpar
     if (elements.clearBtn) {
-      elements.clearBtn.addEventListener('click', () => {
+      elements.clearBtn.addEventListener("click", () => {
         this._clearResults();
       });
     }
@@ -182,7 +182,7 @@ export class InstaCheckerApp {
     // Botões de exportação
     Object.entries(elements.exportButtons).forEach(([view, button]) => {
       if (button) {
-        button.addEventListener('click', () => {
+        button.addEventListener("click", () => {
           this._exportCSV(view);
         });
       }
@@ -195,18 +195,22 @@ export class InstaCheckerApp {
    */
   _bindStateEvents() {
     // Quando dados são atualizados
-    this.state.on('dataUpdated', (data) => {
+    this.state.on("dataUpdated", (data) => {
       this._renderData(data);
       this.ui.setStatusSuccess();
       this.ui.showResultNotice(
-        `Processamos ${Helpers.formatNumber(data.following.size)} seguindo(s) e ${Helpers.formatNumber(data.followers.size)} seguidore(s).`,
-        'success'
+        `Processamos ${Helpers.formatNumber(
+          data.following.size
+        )} seguindo(s) e ${Helpers.formatNumber(
+          data.followers.size
+        )} seguidore(s).`,
+        "success"
       );
       this.ui.scrollToResults();
     });
 
     // Quando processamento muda
-    this.state.on('processingChanged', (isProcessing) => {
+    this.state.on("processingChanged", (isProcessing) => {
       this.ui.setUploaderEnabled(!isProcessing);
       if (isProcessing) {
         this.ui.setStatusProcessing();
@@ -214,12 +218,12 @@ export class InstaCheckerApp {
     });
 
     // Quando erro muda
-    this.state.on('errorChanged', (error) => {
+    this.state.on("errorChanged", (error) => {
       if (error) {
         this.ui.showError(error);
         this.ui.showResultNotice(
-          'Não foi possível processar estes arquivos. Revise o tutorial e tente novamente.',
-          'danger'
+          "Não foi possível processar estes arquivos. Revise o tutorial e tente novamente.",
+          "danger"
         );
         this.ui.resetStatus();
       } else {
@@ -228,7 +232,7 @@ export class InstaCheckerApp {
     });
 
     // Quando filtro, ordenação ou visualização mudam
-    ['filterChanged', 'sortChanged', 'viewChanged'].forEach(event => {
+    ["filterChanged", "sortChanged", "viewChanged"].forEach((event) => {
       this.state.on(event, () => {
         this._updateCurrentView();
       });
@@ -246,34 +250,33 @@ export class InstaCheckerApp {
     // Limpa estado anterior
     this.ui.clearError();
     this.ui.hideResultNotice();
-    
+
     // Reseta filtros
     const elements = this.ui.getElements();
-    if (elements.searchInput) elements.searchInput.value = '';
-    this.state.setFilter('');
+    if (elements.searchInput) elements.searchInput.value = "";
+    this.state.setFilter("");
 
     try {
       this.state.setProcessing(true);
-      
+
       // Processa arquivos
       const data = await InstagramProcessor.processFiles(files);
-      
+
       // Valida dados
       if (!data.followers.size && !data.following.size) {
         throw new Error(
-          'Não encontramos dados de seguidores ou seguindo. Confira se enviou o ZIP completo ou os JSONs da pasta connections.'
+          "Não encontramos dados de seguidores ou seguindo. Confira se enviou o ZIP completo ou os JSONs da pasta connections."
         );
       }
 
       // Atualiza estado
       this.state.setInstagramData(data);
-      
+
       // Limpa input
-      if (elements.fileInput) elements.fileInput.value = '';
-      
+      if (elements.fileInput) elements.fileInput.value = "";
     } catch (error) {
-      console.error('Erro ao processar arquivos:', error);
-      this.state.setError(error?.message || 'Falha ao processar o arquivo.');
+      console.error("Erro ao processar arquivos:", error);
+      this.state.setError(error?.message || "Falha ao processar o arquivo.");
     } finally {
       this.state.setProcessing(false);
     }
@@ -287,13 +290,13 @@ export class InstaCheckerApp {
   _renderData(data) {
     // Mostra seção de resultados
     this.ui.showResults();
-    
+
     // Atualiza resumo
     this.ui.updateSummary(data);
-    
+
     // Atualiza botões
     this.ui.updateActionButtons(data);
-    
+
     // Atualiza visualização atual
     this._updateCurrentView();
   }
@@ -305,8 +308,8 @@ export class InstaCheckerApp {
   _updateCurrentView() {
     const state = this.state.getState();
     const viewState = this.state.getViewState();
-    const views = ['notFollowingBack', 'notFollowedBack', 'mutuals'];
-    
+    const views = ["notFollowingBack", "notFollowedBack", "mutuals"];
+
     let activeMatches = 0;
     let activeTotal = 0;
 
@@ -314,15 +317,15 @@ export class InstaCheckerApp {
     views.forEach((view) => {
       const rawData = state[view] || [];
       const processedData = this._getPreparedData(view, rawData, viewState);
-      
+
       if (view === viewState.active) {
         activeMatches = processedData.length;
         activeTotal = rawData.length;
       }
-      
+
       // Atualiza lista
       this.ui.updateList(view, processedData, viewState.filter);
-      
+
       // Atualiza contadores
       this.ui.updateCounts(view, processedData.length, rawData.length);
     });
@@ -346,18 +349,16 @@ export class InstaCheckerApp {
    */
   _getPreparedData(view, rawData, viewState) {
     if (!rawData.length) return [];
-    
+
     // Copia e ordena
     let data = Helpers.sortData([...rawData], viewState.sort);
-    
+
     // Aplica filtro se existir
     if (viewState.filter) {
       const term = viewState.filter.toLowerCase();
-      data = data.filter((username) => 
-        username.toLowerCase().includes(term)
-      );
+      data = data.filter((username) => username.toLowerCase().includes(term));
     }
-    
+
     return data;
   }
 
@@ -370,7 +371,7 @@ export class InstaCheckerApp {
   async _copyList(view, useFilter) {
     const state = this.state.getState();
     const viewState = this.state.getViewState();
-    
+
     let data;
     if (useFilter) {
       data = this._getPreparedData(view, state[view] || [], viewState);
@@ -391,13 +392,13 @@ export class InstaCheckerApp {
   _exportCSV(view) {
     const state = this.state.getState();
     const data = state[view] || [];
-    
+
     const filenames = {
-      notFollowingBack: 'nao_te_segue_de_volta.csv',
-      notFollowedBack: 'voce_nao_segue.csv',
-      mutuals: 'mutuos.csv'
+      notFollowingBack: "nao_te_segue_de_volta.csv",
+      notFollowedBack: "voce_nao_segue.csv",
+      mutuals: "mutuos.csv",
     };
-    
+
     ExportUtils.exportCSV(data, filenames[view], (message, type) => {
       this.ui.showResultNotice(message, type);
     });
@@ -411,10 +412,10 @@ export class InstaCheckerApp {
     this.state.reset();
     this.ui.resetInterface();
     this.ui.resetStatus();
-    
+
     this.ui.showResultNotice(
-      'Resultados limpos. Faça um novo upload para reprocessar.',
-      'info'
+      "Resultados limpos. Faça um novo upload para reprocessar.",
+      "info"
     );
   }
 }

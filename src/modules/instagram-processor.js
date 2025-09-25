@@ -1,4 +1,4 @@
-import { Helpers } from '../utils/helpers.js';
+import { Helpers } from "../utils/helpers.js";
 
 /**
  * Processador de arquivos do Instagram
@@ -11,7 +11,7 @@ export class InstagramProcessor {
    */
   static async processFiles(files) {
     if (!files || !files.length) {
-      throw new Error('Nenhum arquivo fornecido');
+      throw new Error("Nenhum arquivo fornecido");
     }
 
     let jsonMap = {};
@@ -49,7 +49,7 @@ export class InstagramProcessor {
 
     const zip = await JSZip.loadAsync(file);
     const entries = {};
-    
+
     const promises = Object.keys(zip.files).map(async (path) => {
       const entry = zip.files[path];
       if (entry.dir || !path.toLowerCase().endsWith(".json")) {
@@ -76,10 +76,10 @@ export class InstagramProcessor {
    */
   static async _extractFromFiles(files) {
     const entries = {};
-    
+
     for (const file of files) {
       if (!file.name.toLowerCase().endsWith(".json")) continue;
-      
+
       try {
         const text = await file.text();
         entries[file.name] = JSON.parse(text);
@@ -87,7 +87,7 @@ export class InstagramProcessor {
         console.warn(`Ignorando arquivo JSON inválido: ${file.name}`, error);
       }
     }
-    
+
     return entries;
   }
 
@@ -101,7 +101,7 @@ export class InstagramProcessor {
     const paths = Object.keys(jsonMap);
     const followers = new Set();
     const following = new Set();
-    
+
     // Padrões para identificar tipos de arquivo
     const followerPattern = /(followers|relationships_followers)/i;
     const followingPattern = /(following|relationships_following)/i;
@@ -109,7 +109,7 @@ export class InstagramProcessor {
     // Primeira tentativa: usar nome do arquivo
     paths.forEach((path) => {
       const payload = jsonMap[path];
-      
+
       if (followerPattern.test(path)) {
         this._extractUsers(payload).forEach((handle) => {
           if (handle) followers.add(handle);
@@ -125,7 +125,7 @@ export class InstagramProcessor {
     if (!followers.size || !following.size) {
       Object.values(jsonMap).forEach((payload) => {
         if (!payload || typeof payload !== "object") return;
-        
+
         // Estrutura alternativa com propriedades diretas
         if (Array.isArray(payload.followers)) {
           payload.followers.forEach((entry) => {
@@ -133,7 +133,7 @@ export class InstagramProcessor {
             if (handle) followers.add(handle);
           });
         }
-        
+
         if (Array.isArray(payload.following)) {
           payload.following.forEach((entry) => {
             const handle = this._extractHandle(entry);
@@ -154,14 +154,14 @@ export class InstagramProcessor {
    */
   static _extractUsers(obj) {
     if (!obj || typeof obj !== "object") return [];
-    
+
     const collected = [];
     const stack = [obj];
-    
+
     while (stack.length) {
       const current = stack.pop();
       if (!current || typeof current !== "object") continue;
-      
+
       if (Array.isArray(current)) {
         current.forEach((item) => stack.push(item));
         continue;
@@ -176,7 +176,7 @@ export class InstagramProcessor {
       }
 
       // Procura por propriedades diretas
-      ['username', 'value', 'href'].forEach(prop => {
+      ["username", "value", "href"].forEach((prop) => {
         if (typeof current[prop] === "string") {
           const handle = Helpers.normalizeHandle(current[prop]);
           if (handle) collected.push(handle);
@@ -190,7 +190,7 @@ export class InstagramProcessor {
         }
       });
     }
-    
+
     return collected;
   }
 
@@ -201,13 +201,13 @@ export class InstagramProcessor {
    * @private
    */
   static _extractHandle(entry) {
-    if (!entry) return '';
-    
+    if (!entry) return "";
+
     return Helpers.normalizeHandle(
       entry?.string_list_data?.[0]?.value ||
-      entry?.value ||
-      entry?.username ||
-      entry?.href
+        entry?.value ||
+        entry?.username ||
+        entry?.href
     );
   }
 }

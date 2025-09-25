@@ -1,4 +1,4 @@
-import { Helpers } from './helpers.js';
+import { Helpers } from "./helpers.js";
 
 /**
  * Utilitários para exportação e cópia de dados
@@ -17,7 +17,7 @@ export class ExportUtils {
     }
 
     const payload = data.map((username) => `@${username}`).join("\n");
-    
+
     try {
       // Tenta usar API moderna do clipboard
       if (navigator.clipboard?.writeText) {
@@ -27,19 +27,23 @@ export class ExportUtils {
         const success = this._fallbackCopy(payload);
         if (!success) throw new Error("Clipboard indisponível");
       }
-      
+
       showNotice(
-        `Copiamos ${Helpers.formatNumber(data.length)} perfil(is) para a área de transferência.`,
+        `Copiamos ${Helpers.formatNumber(
+          data.length
+        )} perfil(is) para a área de transferência.`,
         "success"
       );
     } catch (error) {
-      console.error('Erro ao copiar:', error);
-      
+      console.error("Erro ao copiar:", error);
+
       // Tenta fallback mesmo em caso de erro
       const success = this._fallbackCopy(payload);
       if (success) {
         showNotice(
-          `Copiamos ${Helpers.formatNumber(data.length)} perfil(is) para a área de transferência.`,
+          `Copiamos ${Helpers.formatNumber(
+            data.length
+          )} perfil(is) para a área de transferência.`,
           "success"
         );
       } else {
@@ -66,10 +70,10 @@ export class ExportUtils {
       document.body.appendChild(textarea);
       textarea.focus();
       textarea.select();
-      
+
       const success = document.execCommand("copy");
       document.body.removeChild(textarea);
-      
+
       return success;
     } catch (error) {
       console.error("Fallback copy failed:", error);
@@ -90,21 +94,19 @@ export class ExportUtils {
     }
 
     const rows = ["username,profile_url"];
-    
+
     data.forEach((username) => {
       const handleCell = this._toCsvCell(username);
       const urlCell = this._toCsvCell(`https://instagram.com/${username}`);
       rows.push(`${handleCell},${urlCell}`);
     });
 
-    this._downloadBlob(
-      rows.join("\n"), 
-      filename, 
-      "text/csv;charset=utf-8;"
-    );
-    
+    this._downloadBlob(rows.join("\n"), filename, "text/csv;charset=utf-8;");
+
     showNotice(
-      `Exportamos ${Helpers.formatNumber(data.length)} linha(s) para ${filename}.`,
+      `Exportamos ${Helpers.formatNumber(
+        data.length
+      )} linha(s) para ${filename}.`,
       "success"
     );
   }
@@ -130,12 +132,12 @@ export class ExportUtils {
   static _downloadBlob(content, filename, type) {
     const blob = new Blob([content], { type });
     const url = URL.createObjectURL(blob);
-    
+
     const link = document.createElement("a");
     link.href = url;
     link.download = filename;
     link.click();
-    
+
     // Limpa URL temporária
     URL.revokeObjectURL(url);
   }

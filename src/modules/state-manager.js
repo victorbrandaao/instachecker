@@ -18,16 +18,16 @@ export class StateManager {
       notFollowedBack: [],
       mutuals: [],
       isProcessing: false,
-      error: null
+      error: null,
     };
 
     this._viewState = {
       active: "notFollowingBack",
       filter: "",
-      sort: "asc"
+      sort: "asc",
     };
 
-    this.emit('stateChanged', this._state);
+    this.emit("stateChanged", this._state);
   }
 
   /**
@@ -54,7 +54,7 @@ export class StateManager {
     this._state.followers = data.followers;
     this._state.following = data.following;
     this._computeRelationships();
-    this.emit('dataUpdated', this._state);
+    this.emit("dataUpdated", this._state);
   }
 
   /**
@@ -63,7 +63,7 @@ export class StateManager {
    */
   _computeRelationships() {
     const { followers, following } = this._state;
-    
+
     // Quem você segue mas não te segue de volta
     this._state.notFollowingBack = [];
     following.forEach((user) => {
@@ -100,7 +100,7 @@ export class StateManager {
    */
   setProcessing(isProcessing) {
     this._state.isProcessing = isProcessing;
-    this.emit('processingChanged', isProcessing);
+    this.emit("processingChanged", isProcessing);
   }
 
   /**
@@ -109,7 +109,7 @@ export class StateManager {
    */
   setError(error) {
     this._state.error = error;
-    this.emit('errorChanged', error);
+    this.emit("errorChanged", error);
   }
 
   /**
@@ -118,7 +118,7 @@ export class StateManager {
    */
   setFilter(filter) {
     this._viewState.filter = filter.trim().toLowerCase();
-    this.emit('filterChanged', this._viewState.filter);
+    this.emit("filterChanged", this._viewState.filter);
   }
 
   /**
@@ -127,7 +127,7 @@ export class StateManager {
    */
   setSort(sort) {
     this._viewState.sort = sort;
-    this.emit('sortChanged', sort);
+    this.emit("sortChanged", sort);
   }
 
   /**
@@ -136,7 +136,7 @@ export class StateManager {
    */
   setActiveView(view) {
     this._viewState.active = view;
-    this.emit('viewChanged', view);
+    this.emit("viewChanged", view);
   }
 
   /**
@@ -175,7 +175,7 @@ export class StateManager {
    */
   off(event, callback) {
     if (!this._subscribers[event]) return;
-    
+
     const index = this._subscribers[event].indexOf(callback);
     if (index > -1) {
       this._subscribers[event].splice(index, 1);
@@ -190,8 +190,8 @@ export class StateManager {
    */
   emit(event, data) {
     if (!this._subscribers[event]) return;
-    
-    this._subscribers[event].forEach(callback => {
+
+    this._subscribers[event].forEach((callback) => {
       try {
         callback(data);
       } catch (error) {

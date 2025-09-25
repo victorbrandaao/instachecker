@@ -46,13 +46,13 @@ export class Helpers {
    */
   static normalizeHandle(value) {
     if (!value || typeof value !== "string") return "";
-    
+
     let handle = value.trim();
     if (!handle) return "";
 
     // Remove @ inicial
     handle = handle.replace(/^@+/, "");
-    
+
     // Remove protocolo
     handle = handle.replace(/^https?:\/\//i, "");
 
@@ -64,7 +64,7 @@ export class Helpers {
 
     // Remove query params e hash
     handle = handle.split(/[?#]/)[0];
-    
+
     // Remove trailing slashes
     handle = handle.replace(/\/+$/, "");
 
@@ -76,7 +76,7 @@ export class Helpers {
     // Converte para lowercase e remove caracteres inválidos
     handle = handle.toLowerCase();
     handle = handle.replace(/[^a-z0-9._]/g, "");
-    
+
     return handle;
   }
 
@@ -114,7 +114,7 @@ export class Helpers {
    * @param {string} sortType - Tipo de ordenação (asc, desc, len, len-desc)
    * @returns {Array} Array ordenado
    */
-  static sortData(arr, sortType = 'asc') {
+  static sortData(arr, sortType = "asc") {
     const collator = new Intl.Collator("pt-BR");
     switch (sortType) {
       case "desc":
@@ -140,12 +140,12 @@ export class Helpers {
    */
   static formatUsername(username, term) {
     if (!term) return `@${Helpers.escapeHtml(username)}`;
-    
+
     const lower = username.toLowerCase();
     const query = term.toLowerCase();
     let start = 0;
     let result = "";
-    
+
     while (true) {
       const index = lower.indexOf(query, start);
       if (index === -1) {
@@ -159,7 +159,7 @@ export class Helpers {
       result += `<mark>${Helpers.escapeHtml(match)}</mark>`;
       start = index + term.length;
     }
-    
+
     return `@${result}`;
   }
 }
