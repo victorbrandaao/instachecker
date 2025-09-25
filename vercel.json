@@ -1,8 +1,9 @@
 {
+  "outputDirectory": ".",
   "rewrites": [
     {
-      "source": "/instachecker/(.*)",
-      "destination": "/$1"
+      "source": "/instachecker/:path*",
+      "destination": "/:path*"
     }
   ],
   "headers": [
