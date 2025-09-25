@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstaChecker</title>
+    <meta name="theme-color" content="#0ea5e9" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>InstaChecker</h1>
+        <p class="subtitle">
+          Compare seguidores e seguindo a partir do download de dados do
+          Instagram. Tudo processado localmente no seu navegador.
+        </p>
+      </header>
+
+      <section>
+        <h2>Passos</h2>
+        <ol>
+          <li>
+            No Instagram: Configurações → Privacidade e segurança → Download de
+            dados.
+          </li>
+          <li>Baixe o arquivo (ZIP) quando ficar pronto.</li>
+          <li>
+            Faça upload aqui do ZIP ou dos JSONs dentro da pasta "connections".
+          </li>
+        </ol>
+      </section>
+
+      <section class="uploader" id="uploader">
+        <p id="status">
+          Arraste e solte o ZIP/JSON aqui, ou clique para selecionar.
+        </p>
+        <button id="pickBtn">Escolher arquivo</button>
+        <input
+          id="fileInput"
+          type="file"
+          accept=".zip,.json"
+          multiple
+          style="display: none"
+        />
+      </section>
+
+      <div id="error" class="error" style="display: none"></div>
+
+      <section id="results" class="results" style="display: none">
+        <div class="card">
+          <h3>Você segue e não te segue de volta</h3>
+          <p class="count" id="countA">0</p>
+          <div class="list" id="listA"></div>
+          <button id="exportA">Exportar CSV</button>
+        </div>
+        <div class="card">
+          <h3>Te seguem e você não segue</h3>
+          <p class="count" id="countB">0</p>
+          <div class="list" id="listB"></div>
+          <button id="exportB">Exportar CSV</button>
+        </div>
+        <div class="card">
+          <h3>Seguidores em comum</h3>
+          <p class="count" id="countC">0</p>
+          <div class="list" id="listC"></div>
+          <button id="exportC">Exportar CSV</button>
+        </div>
+      </section>
+
+      <footer>
+        <small
+          >PWA: pode adicionar à tela inicial. Nenhum dado sai do seu
+          dispositivo.</small
+        >
+      </footer>
+    </div>
+
+    <!-- JSZip CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="./app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./sw.js", { scope: "./" })
+            .catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
