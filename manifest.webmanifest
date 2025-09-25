@@ -9,13 +9,13 @@
   "description": "Compare seguidores e seguindo a partir do download de dados do Instagram.",
   "icons": [
     {
-      "src": "assets/instachecker-icon.svg",
+      "src": "/instachecker/assets/instachecker-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "assets/instachecker-icon.svg",
+      "src": "/instachecker/assets/instachecker-icon.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "maskable"
