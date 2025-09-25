@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InstaChecker">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <linearGradient id="lens" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.95)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.7)" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#grad)" />
+  <circle cx="360" cy="150" r="44" fill="rgba(255,255,255,0.9)" />
+  <circle cx="256" cy="268" r="150" fill="none" stroke="url(#lens)" stroke-width="42" />
+  <circle cx="256" cy="268" r="90" fill="rgba(255,255,255,0.15)" />
+  <path d="M196 268l52 52 92-92" fill="none" stroke="#ffffff" stroke-width="45" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="136" y="120" width="240" height="56" rx="28" fill="rgba(255,255,255,0.2)" />
+  <circle cx="370" cy="150" r="18" fill="rgba(255,255,255,0.5)" />
+</svg>

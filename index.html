@@ -6,37 +6,326 @@
     <title>InstaChecker</title>
     <meta name="theme-color" content="#0ea5e9" />
     <link rel="manifest" href="./manifest.webmanifest" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./assets/instachecker-icon.svg"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>InstaChecker</h1>
-        <p class="subtitle">
-          Compare seguidores e seguindo a partir do download de dados do
-          Instagram. Tudo processado localmente no seu navegador.
+    <div class="container py-4">
+      <header class="text-center mb-4">
+        <div class="logo-badge mx-auto mb-3" aria-hidden="true">
+          <svg
+            width="72"
+            height="72"
+            viewBox="0 0 72 72"
+            role="img"
+            focusable="false"
+          >
+            <defs>
+              <linearGradient
+                id="badgeGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#a855f7"></stop>
+                <stop offset="50%" stop-color="#ec4899"></stop>
+                <stop offset="100%" stop-color="#f97316"></stop>
+              </linearGradient>
+            </defs>
+            <rect width="72" height="72" rx="20" fill="url(#badgeGradient)" />
+            <circle cx="50" cy="22" r="6" fill="rgba(255,255,255,0.9)" />
+            <path
+              d="M36 20c-9.94 0-18 8.06-18 18s8.06 18 18 18 18-8.06 18-18-8.06-18-18-18zm0 30a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"
+              fill="#fff"
+            />
+            <path
+              d="M30.5 36.5l4.5 4.5 8.5-8.5"
+              fill="none"
+              stroke="#fff"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <h1 class="fw-bold">
+          InstaChecker <i class="fa-brands fa-instagram text-danger"></i>
+        </h1>
+        <p class="subtitle lead">
+          Ferramenta simples para comparar seguidores e seguindo no
+          Instagram.<br />
+          <span class="text-primary">Nenhum dado sai do seu dispositivo.</span>
         </p>
       </header>
 
-      <section>
-        <h2>Passos</h2>
-        <ol>
-          <li>
-            No Instagram: Configurações → Privacidade e segurança → Download de
-            dados.
-          </li>
-          <li>Baixe o arquivo (ZIP) quando ficar pronto.</li>
-          <li>
-            Faça upload aqui do ZIP ou dos JSONs dentro da pasta "connections".
-          </li>
-        </ol>
+      <section class="mb-5" id="tutorial" aria-labelledby="tutorial-title">
+        <h2 class="h4" id="tutorial-title">
+          Guia rápido <i class="fa-solid fa-circle-info text-info"></i>
+        </h2>
+        <p class="text-muted">
+          Sem necessidade de imagens: acompanhe os passos abaixo para preparar e
+          importar seus dados.
+        </p>
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-7">
+            <ol class="list-group step-list">
+              <li class="list-group-item">
+                <div class="d-flex align-items-start">
+                  <div class="step-icon me-3">
+                    <i class="fa-solid fa-download"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 text-uppercase mb-1">
+                      Passo 1 · Solicite o download
+                    </h3>
+                    <p class="mb-2">
+                      Abra o Instagram (aplicativo ou web) e navegue até
+                      <strong
+                        >Configurações &rarr; Privacidade e segurança &rarr;
+                        Download de dados</strong
+                      >.
+                    </p>
+                    <ul class="small text-muted mb-0">
+                      <li>
+                        Escolha receber o e-mail com o link para download.
+                      </li>
+                      <li>
+                        O Instagram costuma enviar o arquivo em poucos minutos.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex align-items-start">
+                  <div class="step-icon me-3">
+                    <i class="fa-solid fa-file-zipper"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 text-uppercase mb-1">
+                      Passo 2 · Baixe e organize
+                    </h3>
+                    <p class="mb-2">
+                      No e-mail do Instagram, clique em
+                      <strong>Download</strong>. Você receberá um arquivo
+                      <strong>.zip</strong> contendo uma pasta chamada
+                      <code>connections</code> com vários JSONs.
+                    </p>
+                    <ul class="small text-muted mb-0">
+                      <li>
+                        Não precisa descompactar: pode enviar o ZIP mesmo.
+                      </li>
+                      <li>
+                        Se preferir, extraia e selecione apenas os JSONs
+                        desejados.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex align-items-start">
+                  <div class="step-icon me-3">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 text-uppercase mb-1">
+                      Passo 3 · Envie aqui no InstaChecker
+                    </h3>
+                    <p class="mb-2">
+                      Arraste o arquivo ZIP (ou JSONs) para o quadro abaixo ou
+                      clique em <strong>Escolher arquivo</strong> e selecione os
+                      documentos.
+                    </p>
+                    <ul class="small text-muted mb-0">
+                      <li>O processamento acontece 100% no seu navegador.</li>
+                      <li>
+                        Assim que terminar, os cards de resultados aparecem
+                        automaticamente.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div class="col-lg-5">
+            <div class="card card-glow h-100">
+              <div class="card-body d-flex flex-column">
+                <h3 class="h5 mb-3">
+                  Depois do upload
+                  <i class="fa-solid fa-wand-magic-sparkles text-warning"></i>
+                </h3>
+                <p class="mb-3">
+                  O card em destaque mostra
+                  <strong>quem você segue e não te segue de volta</strong>. Use
+                  o botão de exportação para gerar um CSV e revisar com calma.
+                </p>
+                <ul class="small text-muted mb-4">
+                  <li>Veja também quem te segue sem follow de volta.</li>
+                  <li>
+                    Confira seguidores em comum para identificar grupos
+                    importantes.
+                  </li>
+                </ul>
+                <div class="mt-auto">
+                  <span
+                    class="badge bg-primary-subtle text-primary-emphasis rounded-pill"
+                  >
+                    <i class="fa-solid fa-lock"></i> Privado, rápido e fácil
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="uploader" id="uploader">
-        <p id="status">
-          Arraste e solte o ZIP/JSON aqui, ou clique para selecionar.
+      <section class="mb-5" id="pwa-guide" aria-labelledby="pwa-title">
+        <h2 class="h4" id="pwa-title">
+          Instale como aplicativo
+          <i class="fa-solid fa-mobile-screen-button text-primary"></i>
+        </h2>
+        <p class="text-muted">
+          Transforme o InstaChecker em um app no seu dispositivo e use mesmo
+          offline.
         </p>
-        <button id="pickBtn">Escolher arquivo</button>
+        <div class="accordion accordion-flush pwa-accordion" id="pwaAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="pwa-ios-heading">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#pwa-ios"
+                aria-expanded="false"
+                aria-controls="pwa-ios"
+              >
+                iPhone / iPad (Safari)
+              </button>
+            </h2>
+            <div
+              id="pwa-ios"
+              class="accordion-collapse collapse"
+              aria-labelledby="pwa-ios-heading"
+              data-bs-parent="#pwaAccordion"
+            >
+              <div class="accordion-body">
+                <ol class="mb-0">
+                  <li>Abra o InstaChecker no Safari.</li>
+                  <li>
+                    Toque no botão <strong>Compartilhar</strong> (ícone de
+                    quadrado com seta).
+                  </li>
+                  <li>
+                    Selecione <strong>Adicionar à Tela de Início</strong>.
+                  </li>
+                  <li>
+                    Confirme com <strong>Adicionar</strong>. O ícone aparecerá
+                    junto dos seus apps.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="pwa-android-heading">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#pwa-android"
+                aria-expanded="false"
+                aria-controls="pwa-android"
+              >
+                Android (Chrome ou Edge)
+              </button>
+            </h2>
+            <div
+              id="pwa-android"
+              class="accordion-collapse collapse"
+              aria-labelledby="pwa-android-heading"
+              data-bs-parent="#pwaAccordion"
+            >
+              <div class="accordion-body">
+                <ol class="mb-0">
+                  <li>Abra o InstaChecker no navegador do Android.</li>
+                  <li>
+                    Toque no menu <strong>⋮</strong> (canto superior direito).
+                  </li>
+                  <li>
+                    Escolha <strong>Adicionar à tela inicial</strong> ou
+                    <strong>Instalar app</strong>.
+                  </li>
+                  <li>
+                    Confirme. O atalho aparecerá com o novo ícone colorido.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="pwa-desktop-heading">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#pwa-desktop"
+                aria-expanded="false"
+                aria-controls="pwa-desktop"
+              >
+                Desktop (Chrome, Edge ou Brave)
+              </button>
+            </h2>
+            <div
+              id="pwa-desktop"
+              class="accordion-collapse collapse"
+              aria-labelledby="pwa-desktop-heading"
+              data-bs-parent="#pwaAccordion"
+            >
+              <div class="accordion-body">
+                <ol class="mb-0">
+                  <li>
+                    Abra o InstaChecker e procure o ícone de
+                    <strong>instalação</strong> na barra de endereços.
+                  </li>
+                  <li>
+                    Clique em <strong>Instalar</strong> (ou
+                    <strong>Instalar aplicativo</strong>).
+                  </li>
+                  <li>O app abrirá em uma janela própria, sem distrações.</li>
+                  <li>Fixe na barra de tarefas/dock para acesso rápido.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="uploader card shadow-sm p-4 mb-4" id="uploader">
+        <p id="status" class="mb-3">
+          <i class="fa-solid fa-upload fa-lg text-primary"></i> <br />
+          <span class="fw-bold">Arraste e solte</span> o arquivo ZIP/JSON
+          aqui,<br />
+          ou <span class="text-decoration-underline">clique no botão</span> para
+          selecionar.
+        </p>
+        <button id="pickBtn" class="btn btn-primary mb-2">
+          <i class="fa-solid fa-file-arrow-up"></i> Escolher arquivo
+        </button>
         <input
           id="fileInput"
           type="file"
@@ -44,41 +333,347 @@
           multiple
           style="display: none"
         />
-      </section>
-
-      <div id="error" class="error" style="display: none"></div>
-
-      <section id="results" class="results" style="display: none">
-        <div class="card">
-          <h3>Você segue e não te segue de volta</h3>
-          <p class="count" id="countA">0</p>
-          <div class="list" id="listA"></div>
-          <button id="exportA">Exportar CSV</button>
-        </div>
-        <div class="card">
-          <h3>Te seguem e você não segue</h3>
-          <p class="count" id="countB">0</p>
-          <div class="list" id="listB"></div>
-          <button id="exportB">Exportar CSV</button>
-        </div>
-        <div class="card">
-          <h3>Seguidores em comum</h3>
-          <p class="count" id="countC">0</p>
-          <div class="list" id="listC"></div>
-          <button id="exportC">Exportar CSV</button>
-        </div>
-      </section>
-
-      <footer>
-        <small
-          >PWA: pode adicionar à tela inicial. Nenhum dado sai do seu
-          dispositivo.</small
+        <small class="text-muted"
+          >Suporte a múltiplos arquivos. Nenhum dado é enviado para
+          servidores.</small
         >
+      </section>
+
+      <div id="error" class="alert alert-danger" style="display: none"></div>
+
+      <section id="results" class="results d-none" aria-live="polite">
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="card stats-card shadow-sm">
+              <div class="card-body">
+                <div
+                  class="row g-3 text-center text-md-start align-items-center"
+                >
+                  <div class="col-md-3">
+                    <span class="stat-label">Seguindo</span>
+                    <p class="stat-value" id="totalFollowing">0</p>
+                    <p class="stat-sub">Perfis que você acompanha</p>
+                    <small class="text-muted d-block"
+                      >Sem follow de volta:
+                      <span id="summaryFollowBack" class="fw-semibold"
+                        >0</span
+                      ></small
+                    >
+                  </div>
+                  <div class="col-md-3">
+                    <span class="stat-label">Seguidores</span>
+                    <p class="stat-value" id="totalFollowers">0</p>
+                    <p class="stat-sub">Perfis que acompanham você</p>
+                  </div>
+                  <div class="col-md-3">
+                    <span class="stat-label">Follow mútuo</span>
+                    <p class="stat-value" id="totalMutuals">0</p>
+                    <p class="stat-sub">Conexões equilibradas</p>
+                  </div>
+                  <div class="col-md-3">
+                    <span class="stat-label">Panorama</span>
+                    <p class="stat-value" id="netBalance">0</p>
+                    <p class="stat-sub" id="insightText">
+                      Faça upload para ver as sugestões.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="mt-3 progress insight-progress"
+                  role="progressbar"
+                  aria-label="Porcentagem de follow de volta"
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div
+                    class="progress-bar"
+                    id="mutualProgress"
+                    style="width: 0%"
+                  >
+                    0%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card controls-card shadow-sm">
+              <div class="card-body">
+                <div class="row g-3 align-items-center">
+                  <div class="col-md-5">
+                    <label
+                      for="searchInput"
+                      class="form-label small text-uppercase mb-1"
+                      >Filtrar perfis</label
+                    >
+                    <div class="input-group input-group-sm filter-group">
+                      <span class="input-group-text"
+                        ><i class="fa-solid fa-magnifying-glass"></i
+                      ></span>
+                      <input
+                        type="search"
+                        id="searchInput"
+                        class="form-control"
+                        placeholder="Digite parte do @ para filtrar..."
+                        autocomplete="off"
+                      />
+                    </div>
+                    <small
+                      id="filterFeedback"
+                      class="text-muted small d-none"
+                    ></small>
+                  </div>
+                  <div class="col-md-3">
+                    <label
+                      for="sortSelect"
+                      class="form-label small text-uppercase mb-1"
+                      >Ordenação</label
+                    >
+                    <select id="sortSelect" class="form-select form-select-sm">
+                      <option value="asc">A → Z</option>
+                      <option value="desc">Z → A</option>
+                      <option value="len">Nome mais curto</option>
+                      <option value="len-desc">Nome mais longo</option>
+                    </select>
+                  </div>
+                  <div
+                    class="col-md-4 text-md-end d-flex gap-2 justify-content-md-end"
+                  >
+                    <button
+                      id="copyCurrent"
+                      type="button"
+                      class="btn btn-outline-light btn-sm"
+                    >
+                      <i class="fa-solid fa-copy"></i> Copiar lista atual
+                    </button>
+                    <button
+                      id="clearBtn"
+                      type="button"
+                      class="btn btn-outline-secondary btn-sm"
+                    >
+                      <i class="fa-solid fa-broom"></i> Limpar resultados
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div
+              id="resultNotice"
+              class="alert alert-success d-none"
+              role="status"
+            ></div>
+          </div>
+
+          <div class="col-12">
+            <ul
+              class="nav nav-pills results-tabs mb-3"
+              id="resultTabs"
+              role="tablist"
+            >
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="tabA"
+                  data-bs-toggle="pill"
+                  data-bs-target="#panelA"
+                  type="button"
+                  role="tab"
+                  aria-controls="panelA"
+                  aria-selected="true"
+                  data-view="notFollowingBack"
+                >
+                  <i class="fa-solid fa-user-minus me-2"></i> Quem não segue de
+                  volta
+                  <span class="badge rounded-pill ms-2" id="tabCountA">0</span>
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="tabB"
+                  data-bs-toggle="pill"
+                  data-bs-target="#panelB"
+                  type="button"
+                  role="tab"
+                  aria-controls="panelB"
+                  aria-selected="false"
+                  data-view="notFollowedBack"
+                >
+                  <i class="fa-solid fa-user-plus me-2"></i> Te seguem sem
+                  follow
+                  <span class="badge rounded-pill ms-2" id="tabCountB">0</span>
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="tabC"
+                  data-bs-toggle="pill"
+                  data-bs-target="#panelC"
+                  type="button"
+                  role="tab"
+                  aria-controls="panelC"
+                  aria-selected="false"
+                  data-view="mutuals"
+                >
+                  <i class="fa-solid fa-users me-2"></i> Seguidores em comum
+                  <span class="badge rounded-pill ms-2" id="tabCountC">0</span>
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content" id="resultPanels">
+              <div
+                class="tab-pane fade show active"
+                id="panelA"
+                role="tabpanel"
+                aria-labelledby="tabA"
+              >
+                <div class="card h-100 shadow-sm result-card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex flex-column flex-md-row align-items-md-center gap-2"
+                    >
+                      <h3 class="card-title mb-0">
+                        <i class="fa-solid fa-user-minus text-warning me-2"></i>
+                        Você segue e não recebe follow de volta
+                      </h3>
+                      <span
+                        class="badge bg-warning-subtle text-warning-emphasis ms-md-auto"
+                        ><span id="countA">0</span> perfis</span
+                      >
+                    </div>
+                    <p class="small text-muted mt-2">
+                      Priorize este card para decidir quem deixar de seguir ou
+                      revisar.
+                    </p>
+                    <div class="list list-flex" id="listA"></div>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                      <button
+                        id="exportA"
+                        class="btn btn-outline-primary btn-sm"
+                      >
+                        <i class="fa-solid fa-file-export"></i> Exportar CSV
+                      </button>
+                      <button
+                        class="btn btn-outline-light btn-sm"
+                        data-copy="notFollowingBack"
+                      >
+                        <i class="fa-solid fa-copy"></i> Copiar lista
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="panelB"
+                role="tabpanel"
+                aria-labelledby="tabB"
+              >
+                <div class="card h-100 shadow-sm result-card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex flex-column flex-md-row align-items-md-center gap-2"
+                    >
+                      <h3 class="card-title mb-0">
+                        <i class="fa-solid fa-user-plus text-success me-2"></i>
+                        Eles te seguem e você pode retribuir
+                      </h3>
+                      <span
+                        class="badge bg-success-subtle text-success-emphasis ms-md-auto"
+                        ><span id="countB">0</span> perfis</span
+                      >
+                    </div>
+                    <p class="small text-muted mt-2">
+                      Valorize quem já demonstrou interesse em você com um
+                      follow de volta.
+                    </p>
+                    <div class="list list-flex" id="listB"></div>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                      <button
+                        id="exportB"
+                        class="btn btn-outline-success btn-sm"
+                      >
+                        <i class="fa-solid fa-file-export"></i> Exportar CSV
+                      </button>
+                      <button
+                        class="btn btn-outline-light btn-sm"
+                        data-copy="notFollowedBack"
+                      >
+                        <i class="fa-solid fa-copy"></i> Copiar lista
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="panelC"
+                role="tabpanel"
+                aria-labelledby="tabC"
+              >
+                <div class="card h-100 shadow-sm result-card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex flex-column flex-md-row align-items-md-center gap-2"
+                    >
+                      <h3 class="card-title mb-0">
+                        <i class="fa-solid fa-users text-info me-2"></i>
+                        Seguidores em sintonia com você
+                      </h3>
+                      <span
+                        class="badge bg-info-subtle text-info-emphasis ms-md-auto"
+                        ><span id="countC">0</span> perfis</span
+                      >
+                    </div>
+                    <p class="small text-muted mt-2">
+                      Identifique fãs, parceiros e contas com alto engajamento
+                      em comum.
+                    </p>
+                    <div class="list list-flex" id="listC"></div>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                      <button id="exportC" class="btn btn-outline-info btn-sm">
+                        <i class="fa-solid fa-file-export"></i> Exportar CSV
+                      </button>
+                      <button
+                        class="btn btn-outline-light btn-sm"
+                        data-copy="mutuals"
+                      >
+                        <i class="fa-solid fa-copy"></i> Copiar lista
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="text-center mt-4">
+        <small class="text-muted d-block mb-2">
+          <i class="fa-solid fa-shield-halved"></i> Nenhum dado sai do seu
+          dispositivo.
+        </small>
+        <small class="text-muted d-block mb-2">
+          <i class="fa-solid fa-mobile-screen-button"></i> Adicione à tela
+          inicial seguindo as instruções do guia PWA.
+        </small>
+        <small class="text-muted d-block">
+          <i class="fa-solid fa-circle-question"></i> Precisa de ajuda? Revise o
+          tutorial ou abra um issue no repositório.
+        </small>
       </footer>
     </div>
 
     <!-- JSZip CDN -->
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./app.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
