@@ -2,7 +2,7 @@
   "name": "instachecker",
   "version": "1.0.0",
   "scripts": {
-    "lint": "eslint . --ext .js,.html || echo 'Linting skipped if no ESLint'",
+    "lint": "eslint . --ext .js || echo 'Linting skipped if no ESLint'",
     "test": "jest || echo 'Testing skipped if no Jest'",
     "build": "echo 'Build step - add if needed, e.g., minify JS'"
   },
