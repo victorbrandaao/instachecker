@@ -1,13 +1,19 @@
 {
   "outputDirectory": ".",
-  "buildCommand": "echo 'Static build - no build needed'",
+  "buildCommand": "echo 'Static files ready'",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/instachecker/:path*",
-      "destination": "/:path*"
+      "source": "/instachecker/(.*)",
+      "destination": "/$1"
     },
     {
       "source": "/instachecker",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/",
       "destination": "/index.html"
     }
   ],
