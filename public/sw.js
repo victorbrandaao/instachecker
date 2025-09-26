@@ -1,15 +1,15 @@
-const CACHE_NAME = "instachecker-v3";
-const STATIC_CACHE = "instachecker-static-v3";
-const DYNAMIC_CACHE = "instachecker-dynamic-v3";
+const CACHE_NAME = "instachecker-v3.1";
+const STATIC_CACHE = "instachecker-static-v3.1";
+const DYNAMIC_CACHE = "instachecker-dynamic-v3.1";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
-  "./app-v3-tailwind.js",
-  "./app-v2-enhancements.js",
-  "./styles-v3-tailwind.css",
-  "./manifest.webmanifest",
-  "./assets/instachecker-icon.svg",
+  "./src/app.js",
+  "./src/styles.css",
+  "./src/instachecker-app.js",
+  "./public/manifest.webmanifest",
+  "./public/assets/instachecker-icon.svg",
 ];
 
 const RUNTIME_ASSETS = [

@@ -17,6 +17,24 @@
       "destination": "/index.html"
     }
   ],
+  "routes": [
+    {
+      "src": "^/instachecker/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "^/instachecker/src/(.*)",
+      "dest": "/src/$1"
+    },
+    {
+      "src": "^/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "^/src/(.*)",
+      "dest": "/src/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/instachecker/(.*)",

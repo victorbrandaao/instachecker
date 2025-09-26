@@ -14,22 +14,10 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "assets/instachecker-icon.svg",
+      "src": "public/assets/instachecker-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
-    },
-    {
-      "src": "assets/instachecker-icon.svg",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/instachecker-icon.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "maskable"
     },
     {
       "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e%3cdefs%3e%3clinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3e%3cstop offset='0%25' style='stop-color:%23667eea'/%3e%3cstop offset='100%25' style='stop-color:%23764ba2'/%3e%3c/linearGradient%3e%3c/defs%3e%3crect width='512' height='512' fill='url(%23bg)' rx='80'/%3e%3ctext x='256' y='320' text-anchor='middle' fill='white' font-family='Inter,system-ui,sans-serif' font-weight='700' font-size='200'%3eIC%3c/text%3e%3c/svg%3e",

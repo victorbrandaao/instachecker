@@ -3,6 +3,7 @@
 ## 📁 Organização dos Diretórios
 
 ### `/src/` - Código Fonte
+
 - **`app.js`** - Aplicação principal (Tailwind v3.0)
 - **`styles.css`** - Estilos customizados Tailwind
 - **`instachecker-app.js`** - Controlador principal
@@ -17,12 +18,14 @@
   - `pwa-helper.js` - Funcionalidades PWA
 
 ### `/public/` - Arquivos Públicos
+
 - **`assets/`** - Assets estáticos
   - `instachecker-icon.svg` - Ícone principal
 - **`manifest.webmanifest`** - Manifesto PWA
 - **`sw.js`** - Service Worker
 
 ### `/archive/` - Versões Antigas
+
 - **`app.js`** - Versão original monolítica
 - **`app-new.js`** - Primeira refatoração modular
 - **`app-v2-enhancements.js`** - Melhorias v2.0
@@ -32,11 +35,13 @@
 - **`redirect.html`** - Página de redirecionamento
 
 ### `/dist/` - Build de Produção (futuro)
+
 - Arquivos otimizados para produção
 - Assets minificados
 - Bundle final
 
 ### Raiz do Projeto
+
 - **`index.html`** - Página principal (v3.0 Tailwind)
 - **`package.json`** - Configuração npm
 - **`vercel.json`** - Configuração Vercel
