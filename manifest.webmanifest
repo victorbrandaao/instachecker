@@ -1,12 +1,12 @@
 {
-  "name": "InstaChecker",
+  "name": "InstaChecker v2.0 - Análise Inteligente",
   "short_name": "InstaChecker",
   "start_url": "/instachecker/",
   "scope": "/instachecker/",
   "display": "standalone",
-  "background_color": "#0b0f15",
-  "theme_color": "#0ea5e9",
-  "description": "Compare seguidores e seguindo a partir do download de dados do Instagram.",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "description": "Ferramenta moderna para analisar seguidores do Instagram com interface renovada e insights inteligentes.",
   "icons": [
     {
       "src": "/instachecker/assets/instachecker-icon.svg",

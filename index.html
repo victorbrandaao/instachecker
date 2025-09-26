@@ -3,690 +3,695 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>InstaChecker</title>
-    <meta name="theme-color" content="#0ea5e9" />
+    <title>InstaChecker v2.0 — Análise Inteligente do Instagram</title>
+    <meta
+      name="description"
+      content="Ferramenta moderna para analisar seus seguidores do Instagram com insights inteligentes e interface renovada."
+    />
+    <meta name="theme-color" content="#1a1a2e" />
     <link rel="manifest" href="/instachecker/manifest.webmanifest" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="/instachecker/assets/instachecker-icon.svg"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="/instachecker/styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="container py-4">
-      <header class="text-center mb-4">
-        <div class="logo-badge mx-auto mb-3" aria-hidden="true">
-          <svg
-            width="72"
-            height="72"
-            viewBox="0 0 72 72"
-            role="img"
-            focusable="false"
-          >
-            <defs>
-              <linearGradient
-                id="badgeGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stop-color="#a855f7"></stop>
-                <stop offset="50%" stop-color="#ec4899"></stop>
-                <stop offset="100%" stop-color="#f97316"></stop>
-              </linearGradient>
-            </defs>
-            <rect width="72" height="72" rx="20" fill="url(#badgeGradient)" />
-            <circle cx="50" cy="22" r="6" fill="rgba(255,255,255,0.9)" />
-            <path
-              d="M36 20c-9.94 0-18 8.06-18 18s8.06 18 18 18 18-8.06 18-18-8.06-18-18-18zm0 30a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"
-              fill="#fff"
-            />
-            <path
-              d="M30.5 36.5l4.5 4.5 8.5-8.5"
-              fill="none"
-              stroke="#fff"
-              stroke-width="5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
-        <h1 class="fw-bold">
-          InstaChecker <i class="fa-brands fa-instagram text-danger"></i>
-        </h1>
-        <p class="subtitle lead">
-          Ferramenta simples para comparar seguidores e seguindo no
-          Instagram.<br />
-          <span class="text-primary">Nenhum dado sai do seu dispositivo.</span>
-        </p>
-      </header>
 
-      <section class="mb-5" id="tutorial" aria-labelledby="tutorial-title">
-        <h2 class="h4" id="tutorial-title">
-          Guia rápido <i class="fa-solid fa-circle-info text-info"></i>
-        </h2>
-        <p class="text-muted">
-          Sem necessidade de imagens: acompanhe os passos abaixo para preparar e
-          importar seus dados.
-        </p>
-        <div class="row g-4 align-items-stretch">
-          <div class="col-lg-7">
-            <ol class="list-group step-list">
-              <li class="list-group-item">
-                <div class="d-flex align-items-start">
-                  <div class="step-icon me-3">
-                    <i class="fa-solid fa-download"></i>
+    <!-- Bootstrap 5.3.3 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6.5.1 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/instachecker/styles.css" />
+  </head>
+  <body class="bg-dark">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dark bg-gradient-primary fixed-top shadow-lg">
+      <div class="container">
+        <span class="navbar-brand d-flex align-items-center">
+          <div class="logo-icon me-2">
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          InstaChecker
+          <span class="badge bg-warning text-dark ms-2">v2.0</span>
+        </span>
+        <div class="d-flex align-items-center">
+          <button
+            class="btn btn-outline-light btn-sm me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#helpModal"
+          >
+            <i class="fa-solid fa-question-circle me-1"></i> Ajuda
+          </button>
+          <div class="theme-toggle">
+            <button
+              class="btn btn-outline-light btn-sm"
+              id="theme-toggle"
+              title="Alternar tema"
+            >
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center min-vh-100">
+          <div class="col-lg-6">
+            <div class="hero-content">
+              <div class="hero-badge mb-3">
+                <span class="badge bg-gradient-warning text-dark px-3 py-2">
+                  <i class="fa-solid fa-sparkles me-1"></i>
+                  Nova versão 2.0
+                </span>
+              </div>
+              <h1 class="hero-title">
+                Análise Inteligente do
+                <span class="text-gradient">Instagram</span>
+              </h1>
+              <p class="hero-subtitle">
+                Descubra insights sobre seus seguidores com nossa ferramenta
+                renovada. Interface moderna, análise mais rápida e 100% privado.
+              </p>
+              <div class="hero-features mb-4">
+                <div class="feature-item">
+                  <i class="fa-solid fa-shield-check text-success"></i>
+                  <span>Totalmente privado</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fa-solid fa-bolt text-warning"></i>
+                  <span>Super rápido</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fa-solid fa-chart-line text-info"></i>
+                  <span>Insights inteligentes</span>
+                </div>
+              </div>
+              <div class="hero-actions">
+                <button
+                  class="btn btn-primary btn-lg me-3"
+                  onclick="scrollToUpload()"
+                >
+                  <i class="fa-solid fa-upload me-2"></i>
+                  Começar Análise
+                </button>
+                <button
+                  class="btn btn-outline-light btn-lg"
+                  data-bs-toggle="modal"
+                  data-bs-target="#demoModal"
+                >
+                  <i class="fa-solid fa-play me-2"></i>
+                  Ver Demo
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-visual">
+              <div class="floating-cards">
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
                   </div>
-                  <div>
-                    <h3 class="h6 text-uppercase mb-1">
-                      Passo 1 · Solicite o download
-                    </h3>
-                    <p class="mb-2">
-                      Abra o Instagram (aplicativo ou web) e navegue até
-                      <strong
-                        >Configurações &rarr; Privacidade e segurança &rarr;
-                        Download de dados</strong
-                      >.
-                    </p>
-                    <ul class="small text-muted mb-0">
-                      <li>
-                        Escolha receber o e-mail com o link para download.
-                      </li>
-                      <li>
-                        O Instagram costuma enviar o arquivo em poucos minutos.
-                      </li>
-                    </ul>
+                  <div class="stat-info">
+                    <h3>1.2K</h3>
+                    <p>Seguidores</p>
                   </div>
                 </div>
-              </li>
-              <li class="list-group-item">
-                <div class="d-flex align-items-start">
-                  <div class="step-icon me-3">
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </div>
+                  <div class="stat-info">
+                    <h3>987</h3>
+                    <p>Seguindo</p>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fa-solid fa-heart"></i>
+                  </div>
+                  <div class="stat-info">
+                    <h3>756</h3>
+                    <p>Mútuos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="upload-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="upload-card">
+              <div class="upload-header text-center mb-4">
+                <h2 class="section-title">
+                  <i class="fa-solid fa-cloud-arrow-up text-primary me-2"></i>
+                  Importar Dados do Instagram
+                </h2>
+                <p class="text-muted">
+                  Arraste seus arquivos ou clique para selecionar
+                </p>
+              </div>
+
+              <!-- Upload Area -->
+              <div class="upload-area" id="uploader">
+                <div class="upload-content">
+                  <div class="upload-icon">
                     <i class="fa-solid fa-file-zipper"></i>
                   </div>
-                  <div>
-                    <h3 class="h6 text-uppercase mb-1">
-                      Passo 2 · Baixe e organize
-                    </h3>
-                    <p class="mb-2">
-                      No e-mail do Instagram, clique em
-                      <strong>Download</strong>. Você receberá um arquivo
-                      <strong>.zip</strong> contendo uma pasta chamada
-                      <code>connections</code> com vários JSONs.
-                    </p>
-                    <ul class="small text-muted mb-0">
-                      <li>
-                        Não precisa descompactar: pode enviar o ZIP mesmo.
-                      </li>
-                      <li>
-                        Se preferir, extraia e selecione apenas os JSONs
-                        desejados.
-                      </li>
-                    </ul>
+                  <h3>Arraste o ZIP aqui</h3>
+                  <p class="text-muted">ou</p>
+                  <button class="btn btn-primary btn-lg" id="pick-btn">
+                    <i class="fa-solid fa-folder-open me-2"></i>
+                    Escolher Arquivos
+                  </button>
+                  <input
+                    type="file"
+                    id="instagram-files"
+                    multiple
+                    accept=".zip,.json"
+                    style="display: none"
+                  />
+
+                  <div class="upload-info mt-3">
+                    <small class="text-muted">
+                      <i class="fa-solid fa-info-circle me-1"></i>
+                      Aceita ZIP do Instagram ou arquivos JSON individuais
+                    </small>
                   </div>
                 </div>
-              </li>
-              <li class="list-group-item">
-                <div class="d-flex align-items-start">
-                  <div class="step-icon me-3">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                  </div>
-                  <div>
-                    <h3 class="h6 text-uppercase mb-1">
-                      Passo 3 · Envie aqui no InstaChecker
-                    </h3>
-                    <p class="mb-2">
-                      Arraste o arquivo ZIP (ou JSONs) para o quadro abaixo ou
-                      clique em <strong>Escolher arquivo</strong> e selecione os
-                      documentos.
-                    </p>
-                    <ul class="small text-muted mb-0">
-                      <li>O processamento acontece 100% no seu navegador.</li>
-                      <li>
-                        Assim que terminar, os cards de resultados aparecem
-                        automaticamente.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <div class="col-lg-5">
-            <div class="card card-glow h-100">
-              <div class="card-body d-flex flex-column">
-                <h3 class="h5 mb-3">
-                  Depois do upload
-                  <i class="fa-solid fa-wand-magic-sparkles text-warning"></i>
-                </h3>
-                <p class="mb-3">
-                  O card em destaque mostra
-                  <strong>quem você segue e não te segue de volta</strong>. Use
-                  o botão de exportação para gerar um CSV e revisar com calma.
-                </p>
-                <ul class="small text-muted mb-4">
-                  <li>Veja também quem te segue sem follow de volta.</li>
-                  <li>
-                    Confira seguidores em comum para identificar grupos
-                    importantes.
-                  </li>
-                </ul>
-                <div class="mt-auto">
-                  <span
-                    class="badge bg-primary-subtle text-primary-emphasis rounded-pill"
+
+                <!-- Upload Status -->
+                <div class="upload-status" id="upload-status">
+                  <i class="fa-solid fa-upload text-muted"></i>
+                  <span class="ms-2"
+                    >Escolha os arquivos do Instagram ou arraste aqui para
+                    começar.</span
                   >
-                    <i class="fa-solid fa-lock"></i> Privado, rápido e fácil
-                  </span>
                 </div>
+              </div>
+
+              <!-- Error Alert -->
+              <div
+                class="alert alert-danger d-none mt-3"
+                id="error-alert"
+                role="alert"
+              >
+                <i class="fa-solid fa-exclamation-triangle me-2"></i>
+                <span></span>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mb-5" id="pwa-guide" aria-labelledby="pwa-title">
-        <h2 class="h4" id="pwa-title">
-          Instale como aplicativo
-          <i class="fa-solid fa-mobile-screen-button text-primary"></i>
-        </h2>
-        <p class="text-muted">
-          Transforme o InstaChecker em um app no seu dispositivo e use mesmo
-          offline.
-        </p>
-        <div class="accordion accordion-flush pwa-accordion" id="pwaAccordion">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="pwa-ios-heading">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#pwa-ios"
-                aria-expanded="false"
-                aria-controls="pwa-ios"
-              >
-                iPhone / iPad (Safari)
-              </button>
-            </h2>
-            <div
-              id="pwa-ios"
-              class="accordion-collapse collapse"
-              aria-labelledby="pwa-ios-heading"
-              data-bs-parent="#pwaAccordion"
-            >
-              <div class="accordion-body">
-                <ol class="mb-0">
-                  <li>Abra o InstaChecker no Safari.</li>
-                  <li>
-                    Toque no botão <strong>Compartilhar</strong> (ícone de
-                    quadrado com seta).
-                  </li>
-                  <li>
-                    Selecione <strong>Adicionar à Tela de Início</strong>.
-                  </li>
-                  <li>
-                    Confirme com <strong>Adicionar</strong>. O ícone aparecerá
-                    junto dos seus apps.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="pwa-android-heading">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#pwa-android"
-                aria-expanded="false"
-                aria-controls="pwa-android"
-              >
-                Android (Chrome ou Edge)
-              </button>
-            </h2>
-            <div
-              id="pwa-android"
-              class="accordion-collapse collapse"
-              aria-labelledby="pwa-android-heading"
-              data-bs-parent="#pwaAccordion"
-            >
-              <div class="accordion-body">
-                <ol class="mb-0">
-                  <li>Abra o InstaChecker no navegador do Android.</li>
-                  <li>
-                    Toque no menu <strong>⋮</strong> (canto superior direito).
-                  </li>
-                  <li>
-                    Escolha <strong>Adicionar à tela inicial</strong> ou
-                    <strong>Instalar app</strong>.
-                  </li>
-                  <li>
-                    Confirme. O atalho aparecerá com o novo ícone colorido.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="pwa-desktop-heading">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#pwa-desktop"
-                aria-expanded="false"
-                aria-controls="pwa-desktop"
-              >
-                Desktop (Chrome, Edge ou Brave)
-              </button>
-            </h2>
-            <div
-              id="pwa-desktop"
-              class="accordion-collapse collapse"
-              aria-labelledby="pwa-desktop-heading"
-              data-bs-parent="#pwaAccordion"
-            >
-              <div class="accordion-body">
-                <ol class="mb-0">
-                  <li>
-                    Abra o InstaChecker e procure o ícone de
-                    <strong>instalação</strong> na barra de endereços.
-                  </li>
-                  <li>
-                    Clique em <strong>Instalar</strong> (ou
-                    <strong>Instalar aplicativo</strong>).
-                  </li>
-                  <li>O app abrirá em uma janela própria, sem distrações.</li>
-                  <li>Fixe na barra de tarefas/dock para acesso rápido.</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- Results Section -->
+    <section class="results-section d-none" id="results-section">
+      <div class="container">
+        <!-- Summary Dashboard -->
+        <div class="dashboard-header mb-4">
+          <h2 class="section-title text-center mb-4">
+            <i class="fa-solid fa-chart-pie text-primary me-2"></i>
+            Dashboard de Análise
+          </h2>
 
-      <section class="uploader card shadow-sm p-4 mb-4" id="uploader">
-        <p id="status" class="mb-3">
-          <i class="fa-solid fa-upload fa-lg text-primary"></i> <br />
-          <span class="fw-bold">Arraste e solte</span> o arquivo ZIP/JSON
-          aqui,<br />
-          ou <span class="text-decoration-underline">clique no botão</span> para
-          selecionar.
-        </p>
-        <button id="pickBtn" class="btn btn-primary mb-2">
-          <i class="fa-solid fa-file-arrow-up"></i> Escolher arquivo
-        </button>
-        <input
-          id="fileInput"
-          type="file"
-          accept=".zip,.json"
-          multiple
-          style="display: none"
-        />
-        <small class="text-muted"
-          >Suporte a múltiplos arquivos. Nenhum dado é enviado para
-          servidores.</small
-        >
-      </section>
-
-      <div id="error" class="alert alert-danger" style="display: none"></div>
-
-      <section id="results" class="results d-none" aria-live="polite">
-        <div class="row g-3">
-          <div class="col-12">
-            <div class="card stats-card shadow-sm">
-              <div class="card-body">
-                <div
-                  class="row g-3 text-center text-md-start align-items-center"
-                >
-                  <div class="col-md-3">
-                    <span class="stat-label">Seguindo</span>
-                    <p class="stat-value" id="totalFollowing">0</p>
-                    <p class="stat-sub">Perfis que você acompanha</p>
-                    <small class="text-muted d-block"
-                      >Sem follow de volta:
-                      <span id="summaryFollowBack" class="fw-semibold"
-                        >0</span
-                      ></small
-                    >
-                  </div>
-                  <div class="col-md-3">
-                    <span class="stat-label">Seguidores</span>
-                    <p class="stat-value" id="totalFollowers">0</p>
-                    <p class="stat-sub">Perfis que acompanham você</p>
-                  </div>
-                  <div class="col-md-3">
-                    <span class="stat-label">Follow mútuo</span>
-                    <p class="stat-value" id="totalMutuals">0</p>
-                    <p class="stat-sub">Conexões equilibradas</p>
-                  </div>
-                  <div class="col-md-3">
-                    <span class="stat-label">Panorama</span>
-                    <p class="stat-value" id="netBalance">0</p>
-                    <p class="stat-sub" id="insightText">
-                      Faça upload para ver as sugestões.
-                    </p>
-                  </div>
+          <!-- Stats Cards -->
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-lg-3">
+              <div class="stats-card">
+                <div class="stats-icon bg-primary">
+                  <i class="fa-solid fa-users"></i>
                 </div>
-                <div
-                  class="mt-3 progress insight-progress"
-                  role="progressbar"
-                  aria-label="Porcentagem de follow de volta"
-                  aria-valuenow="0"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
+                <div class="stats-content">
+                  <h3 id="total-followers">0</h3>
+                  <p>Seguidores</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="stats-card">
+                <div class="stats-icon bg-success">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="stats-content">
+                  <h3 id="total-following">0</h3>
+                  <p>Seguindo</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="stats-card">
+                <div class="stats-icon bg-info">
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="stats-content">
+                  <h3 id="total-mutuals">0</h3>
+                  <p>Mútuos</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="stats-card">
+                <div class="stats-icon bg-warning">
+                  <i class="fa-solid fa-balance-scale"></i>
+                </div>
+                <div class="stats-content">
+                  <h3 id="net-balance">0</h3>
+                  <p>Balanço</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engagement Progress -->
+          <div class="engagement-card mb-4">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h4 class="mb-2">Taxa de Engajamento Mútuo</h4>
+                <div class="progress progress-lg">
                   <div
-                    class="progress-bar"
-                    id="mutualProgress"
+                    class="progress-bar bg-gradient-success"
+                    id="mutual-progress"
+                    role="progressbar"
                     style="width: 0%"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
                   >
                     0%
                   </div>
                 </div>
+                <p class="text-muted mt-2" id="insight-text">
+                  Faça upload para ver as sugestões.
+                </p>
               </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <div class="card controls-card shadow-sm">
-              <div class="card-body">
-                <div class="row g-3 align-items-center">
-                  <div class="col-md-5">
-                    <label
-                      for="searchInput"
-                      class="form-label small text-uppercase mb-1"
-                      >Filtrar perfis</label
-                    >
-                    <div class="input-group input-group-sm filter-group">
-                      <span class="input-group-text"
-                        ><i class="fa-solid fa-magnifying-glass"></i
-                      ></span>
-                      <input
-                        type="search"
-                        id="searchInput"
-                        class="form-control"
-                        placeholder="Digite parte do @ para filtrar..."
-                        autocomplete="off"
-                      />
-                    </div>
-                    <small
-                      id="filterFeedback"
-                      class="text-muted small d-none"
-                    ></small>
-                  </div>
-                  <div class="col-md-3">
-                    <label
-                      for="sortSelect"
-                      class="form-label small text-uppercase mb-1"
-                      >Ordenação</label
-                    >
-                    <select id="sortSelect" class="form-select form-select-sm">
-                      <option value="asc">A → Z</option>
-                      <option value="desc">Z → A</option>
-                      <option value="len">Nome mais curto</option>
-                      <option value="len-desc">Nome mais longo</option>
-                    </select>
-                  </div>
-                  <div
-                    class="col-md-4 text-md-end d-flex gap-2 justify-content-md-end"
-                  >
-                    <button
-                      id="copyCurrent"
-                      type="button"
-                      class="btn btn-outline-light btn-sm"
-                    >
-                      <i class="fa-solid fa-copy"></i> Copiar lista atual
-                    </button>
-                    <button
-                      id="clearBtn"
-                      type="button"
-                      class="btn btn-outline-secondary btn-sm"
-                    >
-                      <i class="fa-solid fa-broom"></i> Limpar resultados
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <div
-              id="resultNotice"
-              class="alert alert-success d-none"
-              role="status"
-            ></div>
-          </div>
-
-          <div class="col-12">
-            <ul
-              class="nav nav-pills results-tabs mb-3"
-              id="resultTabs"
-              role="tablist"
-            >
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link active"
-                  id="tabA"
-                  data-bs-toggle="pill"
-                  data-bs-target="#panelA"
-                  type="button"
-                  role="tab"
-                  aria-controls="panelA"
-                  aria-selected="true"
-                  data-view="notFollowingBack"
-                >
-                  <i class="fa-solid fa-user-minus me-2"></i> Quem não segue de
-                  volta
-                  <span class="badge rounded-pill ms-2" id="tabCountA">0</span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="tabB"
-                  data-bs-toggle="pill"
-                  data-bs-target="#panelB"
-                  type="button"
-                  role="tab"
-                  aria-controls="panelB"
-                  aria-selected="false"
-                  data-view="notFollowedBack"
-                >
-                  <i class="fa-solid fa-user-plus me-2"></i> Te seguem sem
-                  follow
-                  <span class="badge rounded-pill ms-2" id="tabCountB">0</span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="tabC"
-                  data-bs-toggle="pill"
-                  data-bs-target="#panelC"
-                  type="button"
-                  role="tab"
-                  aria-controls="panelC"
-                  aria-selected="false"
-                  data-view="mutuals"
-                >
-                  <i class="fa-solid fa-users me-2"></i> Seguidores em comum
-                  <span class="badge rounded-pill ms-2" id="tabCountC">0</span>
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content" id="resultPanels">
-              <div
-                class="tab-pane fade show active"
-                id="panelA"
-                role="tabpanel"
-                aria-labelledby="tabA"
-              >
-                <div class="card h-100 shadow-sm result-card">
-                  <div class="card-body">
-                    <div
-                      class="d-flex flex-column flex-md-row align-items-md-center gap-2"
-                    >
-                      <h3 class="card-title mb-0">
-                        <i class="fa-solid fa-user-minus text-warning me-2"></i>
-                        Você segue e não recebe follow de volta
-                      </h3>
-                      <span
-                        class="badge bg-warning-subtle text-warning-emphasis ms-md-auto"
-                        ><span id="countA">0</span> perfis</span
-                      >
-                    </div>
-                    <p class="small text-muted mt-2">
-                      Priorize este card para decidir quem deixar de seguir ou
-                      revisar.
-                    </p>
-                    <div class="list list-flex" id="listA"></div>
-                    <div class="d-flex flex-wrap gap-2 mt-3">
-                      <button
-                        id="exportA"
-                        class="btn btn-outline-primary btn-sm"
-                      >
-                        <i class="fa-solid fa-file-export"></i> Exportar CSV
-                      </button>
-                      <button
-                        class="btn btn-outline-light btn-sm"
-                        data-copy="notFollowingBack"
-                      >
-                        <i class="fa-solid fa-copy"></i> Copiar lista
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="panelB"
-                role="tabpanel"
-                aria-labelledby="tabB"
-              >
-                <div class="card h-100 shadow-sm result-card">
-                  <div class="card-body">
-                    <div
-                      class="d-flex flex-column flex-md-row align-items-md-center gap-2"
-                    >
-                      <h3 class="card-title mb-0">
-                        <i class="fa-solid fa-user-plus text-success me-2"></i>
-                        Eles te seguem e você pode retribuir
-                      </h3>
-                      <span
-                        class="badge bg-success-subtle text-success-emphasis ms-md-auto"
-                        ><span id="countB">0</span> perfis</span
-                      >
-                    </div>
-                    <p class="small text-muted mt-2">
-                      Valorize quem já demonstrou interesse em você com um
-                      follow de volta.
-                    </p>
-                    <div class="list list-flex" id="listB"></div>
-                    <div class="d-flex flex-wrap gap-2 mt-3">
-                      <button
-                        id="exportB"
-                        class="btn btn-outline-success btn-sm"
-                      >
-                        <i class="fa-solid fa-file-export"></i> Exportar CSV
-                      </button>
-                      <button
-                        class="btn btn-outline-light btn-sm"
-                        data-copy="notFollowedBack"
-                      >
-                        <i class="fa-solid fa-copy"></i> Copiar lista
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="panelC"
-                role="tabpanel"
-                aria-labelledby="tabC"
-              >
-                <div class="card h-100 shadow-sm result-card">
-                  <div class="card-body">
-                    <div
-                      class="d-flex flex-column flex-md-row align-items-md-center gap-2"
-                    >
-                      <h3 class="card-title mb-0">
-                        <i class="fa-solid fa-users text-info me-2"></i>
-                        Seguidores em sintonia com você
-                      </h3>
-                      <span
-                        class="badge bg-info-subtle text-info-emphasis ms-md-auto"
-                        ><span id="countC">0</span> perfis</span
-                      >
-                    </div>
-                    <p class="small text-muted mt-2">
-                      Identifique fãs, parceiros e contas com alto engajamento
-                      em comum.
-                    </p>
-                    <div class="list list-flex" id="listC"></div>
-                    <div class="d-flex flex-wrap gap-2 mt-3">
-                      <button id="exportC" class="btn btn-outline-info btn-sm">
-                        <i class="fa-solid fa-file-export"></i> Exportar CSV
-                      </button>
-                      <button
-                        class="btn btn-outline-light btn-sm"
-                        data-copy="mutuals"
-                      >
-                        <i class="fa-solid fa-copy"></i> Copiar lista
-                      </button>
-                    </div>
-                  </div>
+              <div class="col-md-4 text-center">
+                <div class="engagement-score">
+                  <span class="score-number" id="summary-follow-back">0</span>
+                  <span class="score-label">não seguem de volta</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <footer class="text-center mt-4">
-        <small class="text-muted d-block mb-2">
-          <i class="fa-solid fa-shield-halved"></i> Nenhum dado sai do seu
-          dispositivo.
-        </small>
-        <small class="text-muted d-block mb-2">
-          <i class="fa-solid fa-mobile-screen-button"></i> Adicione à tela
-          inicial seguindo as instruções do guia PWA.
-        </small>
-        <small class="text-muted d-block">
-          <i class="fa-solid fa-circle-question"></i> Precisa de ajuda? Revise o
-          tutorial ou abra um issue no repositório.
-        </small>
-      </footer>
+        <!-- Controls Bar -->
+        <div class="controls-bar mb-4">
+          <div class="row align-items-center g-3">
+            <div class="col-md-6">
+              <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="search-input"
+                  placeholder="Buscar por username..."
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" id="sort-select">
+                <option value="asc">A-Z</option>
+                <option value="desc">Z-A</option>
+                <option value="len">Menor nome</option>
+                <option value="len-desc">Maior nome</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button
+                class="btn btn-outline-danger btn-sm w-100"
+                id="clear-btn"
+              >
+                <i class="fa-solid fa-trash me-1"></i>
+                Limpar Dados
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter Feedback -->
+          <div
+            class="alert alert-info mt-3 d-none"
+            id="filter-feedback"
+            role="alert"
+          >
+            <i class="fa-solid fa-filter me-2"></i>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-container mb-4">
+          <ul class="nav nav-pills nav-fill" role="tablist">
+            <li class="nav-item">
+              <button
+                class="nav-link active"
+                data-bs-toggle="tab"
+                data-bs-target="#not-following-back-tab"
+                data-view="notFollowingBack"
+                type="button"
+                role="tab"
+              >
+                <i class="fa-solid fa-user-xmark me-2"></i>
+                Não seguem você
+                <span
+                  class="badge bg-light text-dark ms-2"
+                  id="not-following-back-tab-count"
+                  >0</span
+                >
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#not-followed-back-tab"
+                data-view="notFollowedBack"
+                type="button"
+                role="tab"
+              >
+                <i class="fa-solid fa-user-plus me-2"></i>
+                Você não segue
+                <span
+                  class="badge bg-light text-dark ms-2"
+                  id="not-followed-back-tab-count"
+                  >0</span
+                >
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#mutuals-tab"
+                data-view="mutuals"
+                type="button"
+                role="tab"
+              >
+                <i class="fa-solid fa-handshake me-2"></i>
+                Mútuos
+                <span
+                  class="badge bg-light text-dark ms-2"
+                  id="mutuals-tab-count"
+                  >0</span
+                >
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <div
+            class="tab-pane fade show active"
+            id="not-following-back-tab"
+            role="tabpanel"
+          >
+            <div class="results-card">
+              <div class="results-header">
+                <h4>
+                  <i class="fa-solid fa-user-xmark text-danger me-2"></i>
+                  Não te seguem de volta
+                  <span
+                    class="badge bg-danger ms-2"
+                    id="not-following-back-count"
+                    >0</span
+                  >
+                </h4>
+                <div class="results-actions">
+                  <button
+                    class="btn btn-outline-primary btn-sm"
+                    data-copy="notFollowingBack"
+                  >
+                    <i class="fa-solid fa-copy me-1"></i> Copiar
+                  </button>
+                  <button
+                    class="btn btn-outline-success btn-sm"
+                    id="export-not-following-back"
+                  >
+                    <i class="fa-solid fa-download me-1"></i> CSV
+                  </button>
+                </div>
+              </div>
+              <div class="results-list" id="not-following-back-list"></div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="not-followed-back-tab" role="tabpanel">
+            <div class="results-card">
+              <div class="results-header">
+                <h4>
+                  <i class="fa-solid fa-user-plus text-warning me-2"></i>
+                  Você não segue de volta
+                  <span
+                    class="badge bg-warning text-dark ms-2"
+                    id="not-followed-back-count"
+                    >0</span
+                  >
+                </h4>
+                <div class="results-actions">
+                  <button
+                    class="btn btn-outline-primary btn-sm"
+                    data-copy="notFollowedBack"
+                  >
+                    <i class="fa-solid fa-copy me-1"></i> Copiar
+                  </button>
+                  <button
+                    class="btn btn-outline-success btn-sm"
+                    id="export-not-followed-back"
+                  >
+                    <i class="fa-solid fa-download me-1"></i> CSV
+                  </button>
+                </div>
+              </div>
+              <div class="results-list" id="not-followed-back-list"></div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="mutuals-tab" role="tabpanel">
+            <div class="results-card">
+              <div class="results-header">
+                <h4>
+                  <i class="fa-solid fa-handshake text-success me-2"></i>
+                  Seguidores mútuos
+                  <span class="badge bg-success ms-2" id="mutuals-count"
+                    >0</span
+                  >
+                </h4>
+                <div class="results-actions">
+                  <button
+                    class="btn btn-outline-primary btn-sm"
+                    data-copy="mutuals"
+                  >
+                    <i class="fa-solid fa-copy me-1"></i> Copiar
+                  </button>
+                  <button
+                    class="btn btn-outline-success btn-sm"
+                    id="export-mutuals"
+                  >
+                    <i class="fa-solid fa-download me-1"></i> CSV
+                  </button>
+                </div>
+              </div>
+              <div class="results-list" id="mutuals-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions mt-4">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <button class="btn btn-primary w-100" id="copy-current">
+                <i class="fa-solid fa-copy me-2"></i>
+                Copiar Lista Atual
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button
+                class="btn btn-outline-secondary w-100"
+                onclick="scrollToUpload()"
+              >
+                <i class="fa-solid fa-redo me-2"></i>
+                Nova Análise
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Notice -->
+        <div
+          class="alert alert-success d-none mt-4"
+          id="result-notice"
+          role="alert"
+        >
+          <i class="fa-solid fa-check-circle me-2"></i>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark border-secondary">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title text-white">
+              <i class="fa-solid fa-question-circle text-info me-2"></i>
+              Como usar o InstaChecker
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body text-white">
+            <div class="help-steps">
+              <div class="help-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h6>Baixar dados do Instagram</h6>
+                  <p>
+                    Acesse Instagram → Configurações → Privacidade → Baixar
+                    dados. Solicite o download em formato JSON.
+                  </p>
+                </div>
+              </div>
+              <div class="help-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h6>Receber o arquivo</h6>
+                  <p>
+                    O Instagram enviará um link por email. Baixe o arquivo ZIP
+                    com seus dados.
+                  </p>
+                </div>
+              </div>
+              <div class="help-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h6>Fazer upload</h6>
+                  <p>
+                    Arraste o arquivo ZIP para a área de upload ou clique em
+                    "Escolher Arquivos".
+                  </p>
+                </div>
+              </div>
+              <div class="help-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h6>Analisar resultados</h6>
+                  <p>
+                    Explore as abas para ver quem não segue você, quem você não
+                    segue e seguidores mútuos.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-info mt-4">
+              <i class="fa-solid fa-shield-check me-2"></i>
+              <strong>100% Privado:</strong> Todos os dados são processados
+              localmente no seu navegador. Nada é enviado para servidores
+              externos.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- JSZip CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Demo Modal -->
+    <div class="modal fade" id="demoModal" tabindex="-1">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content bg-dark border-secondary">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title text-white">
+              <i class="fa-solid fa-play-circle text-primary me-2"></i>
+              Demo do InstaChecker v2.0
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <div class="demo-placeholder">
+              <i class="fa-solid fa-video fa-3x text-muted mb-3"></i>
+              <h6 class="text-muted">Demo em vídeo será adicionado em breve</h6>
+              <p class="text-muted">
+                Por enquanto, experimente fazendo upload dos seus dados!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Nova versão modular -->
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="footer-brand">
+              <strong>InstaChecker v2.0</strong>
+              <span class="text-muted ms-2"
+                >— Análise inteligente do Instagram</span
+              >
+            </div>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="footer-links">
+              <small class="text-muted">
+                <i class="fa-solid fa-shield-halved me-1"></i>
+                Totalmente privado e seguro
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- New Modular App -->
     <script type="module" src="/instachecker/app-new.js"></script>
 
-    <!-- Fallback para versão legada -->
+    <!-- V2.0 Enhancements -->
+    <script src="/instachecker/app-v2-enhancements.js"></script>
+
+    <!-- Fallback -->
     <script>
-      // Função para carregar versão legada em caso de erro
       window.loadLegacyApp = function () {
         const script = document.createElement("script");
         script.src = "/instachecker/app.js";
-        script.onerror = () => {
-          console.error("Falha ao carregar ambas as versões da aplicação");
-        };
         document.head.appendChild(script);
       };
 
