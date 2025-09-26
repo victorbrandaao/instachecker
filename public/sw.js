@@ -1,6 +1,6 @@
-const CACHE_NAME = "instachecker-v3.1";
-const STATIC_CACHE = "instachecker-static-v3.1";
-const DYNAMIC_CACHE = "instachecker-dynamic-v3.1";
+const CACHE_NAME = "instachecker-v3.2";
+const STATIC_CACHE = "instachecker-static-v3.2";
+const DYNAMIC_CACHE = "instachecker-dynamic-v3.2";
 
 const CORE_ASSETS = [
   "./",
@@ -8,7 +8,11 @@ const CORE_ASSETS = [
   "./src/app.js",
   "./src/styles.css",
   "./src/instachecker-app.js",
-  "./public/manifest.webmanifest",
+  "./src/modules/state-manager.js",
+  "./src/modules/ui-manager.js", 
+  "./src/modules/instagram-processor.js",
+  "./src/utils/helpers.js",
+  "./src/utils/export-utils.js",
   "./public/assets/instachecker-icon.svg",
 ];
 
