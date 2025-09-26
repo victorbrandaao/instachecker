@@ -9,7 +9,7 @@ const CORE_ASSETS = [
   "./src/styles.css",
   "./src/instachecker-app.js",
   "./src/modules/state-manager.js",
-  "./src/modules/ui-manager.js", 
+  "./src/modules/ui-manager.js",
   "./src/modules/instagram-processor.js",
   "./src/utils/helpers.js",
   "./src/utils/export-utils.js",

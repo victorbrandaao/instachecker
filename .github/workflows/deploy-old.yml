@@ -7,22 +7,32 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies (optional)
+        run: npm install || echo "No dependencies to install"
+
       - name: Validate project structure
         run: |
-          echo "📁 Checking project structure..."
           ls -la
-          echo "✅ Index file exists: $(test -f index.html && echo 'YES' || echo 'NO')"
-          echo "✅ Source directory: $(test -d src/ && echo 'YES' || echo 'NO')"
-          echo "✅ Public directory: $(test -d public/ && echo 'YES' || echo 'NO')"
-          echo "✅ Package.json: $(test -f package.json && echo 'YES' || echo 'NO')"
-          
+          test -f index.html || exit 1
+          test -f package.json || exit 1
+          test -d src/ || exit 1
+          test -d public/ || exit 1
+
+      - name: Build for production
+        run: npm run build
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
@@ -30,4 +40,3 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: "--prod"
-          working-directory: ./

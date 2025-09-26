@@ -1,67 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Icon Generator</title>
     <style>
-        canvas { border: 1px solid #ccc; }
+      canvas {
+        border: 1px solid #ccc;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h3>Icon Generator - InstaChecker</h3>
     <canvas id="canvas192" width="192" height="192"></canvas>
     <canvas id="canvas512" width="512" height="512"></canvas>
-    
+
     <script>
-        function generateIcon(canvas, size) {
-            const ctx = canvas.getContext('2d');
-            
-            // Background gradient
-            const gradient = ctx.createLinearGradient(0, 0, size, size);
-            gradient.addColorStop(0, '#667eea');
-            gradient.addColorStop(0.5, '#764ba2');
-            gradient.addColorStop(1, '#6B73FF');
-            
-            // Draw background with rounded corners
-            ctx.fillStyle = gradient;
-            ctx.roundRect(0, 0, size, size, size * 0.15);
-            ctx.fill();
-            
-            // Text
-            ctx.fillStyle = 'white';
-            ctx.font = `bold ${size * 0.35}px Inter, system-ui, sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('IC', size/2, size/2);
-            
-            // Download link
-            const link = document.createElement('a');
-            link.download = `instachecker-${size}.png`;
-            link.href = canvas.toDataURL();
-            link.textContent = `Download ${size}x${size}`;
-            link.style.display = 'block';
-            link.style.margin = '10px 0';
-            document.body.appendChild(link);
-        }
-        
-        // Polyfill for roundRect
-        if (!CanvasRenderingContext2D.prototype.roundRect) {
-            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
-                this.beginPath();
-                this.moveTo(x + radius, y);
-                this.lineTo(x + width - radius, y);
-                this.quadraticCurveTo(x + width, y, x + width, y + radius);
-                this.lineTo(x + width, y + height - radius);
-                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-                this.lineTo(x + radius, y + height);
-                this.quadraticCurveTo(x, y + height, x, y + height - radius);
-                this.lineTo(x, y + radius);
-                this.quadraticCurveTo(x, y, x + radius, y);
-                this.closePath();
-            };
-        }
-        
-        generateIcon(document.getElementById('canvas192'), 192);
-        generateIcon(document.getElementById('canvas512'), 512);
+      function generateIcon(canvas, size) {
+        const ctx = canvas.getContext("2d");
+
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, size, size);
+        gradient.addColorStop(0, "#667eea");
+        gradient.addColorStop(0.5, "#764ba2");
+        gradient.addColorStop(1, "#6B73FF");
+
+        // Draw background with rounded corners
+        ctx.fillStyle = gradient;
+        ctx.roundRect(0, 0, size, size, size * 0.15);
+        ctx.fill();
+
+        // Text
+        ctx.fillStyle = "white";
+        ctx.font = `bold ${size * 0.35}px Inter, system-ui, sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("IC", size / 2, size / 2);
+
+        // Download link
+        const link = document.createElement("a");
+        link.download = `instachecker-${size}.png`;
+        link.href = canvas.toDataURL();
+        link.textContent = `Download ${size}x${size}`;
+        link.style.display = "block";
+        link.style.margin = "10px 0";
+        document.body.appendChild(link);
+      }
+
+      // Polyfill for roundRect
+      if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function (
+          x,
+          y,
+          width,
+          height,
+          radius
+        ) {
+          this.beginPath();
+          this.moveTo(x + radius, y);
+          this.lineTo(x + width - radius, y);
+          this.quadraticCurveTo(x + width, y, x + width, y + radius);
+          this.lineTo(x + width, y + height - radius);
+          this.quadraticCurveTo(
+            x + width,
+            y + height,
+            x + width - radius,
+            y + height
+          );
+          this.lineTo(x + radius, y + height);
+          this.quadraticCurveTo(x, y + height, x, y + height - radius);
+          this.lineTo(x, y + radius);
+          this.quadraticCurveTo(x, y, x + radius, y);
+          this.closePath();
+        };
+      }
+
+      generateIcon(document.getElementById("canvas192"), 192);
+      generateIcon(document.getElementById("canvas512"), 512);
     </script>
-</body>
+  </body>
 </html>

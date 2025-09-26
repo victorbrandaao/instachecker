@@ -1,174 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA Test - InstaChecker</title>
     <style>
-        body { 
-            font-family: system-ui, sans-serif; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 20px; 
-            background: #1f2937;
-            color: white;
-        }
-        .test { 
-            background: #374151; 
-            padding: 15px; 
-            margin: 10px 0; 
-            border-radius: 8px; 
-            border-left: 4px solid #667eea;
-        }
-        .success { border-left-color: #10b981; }
-        .error { border-left-color: #ef4444; }
-        .warning { border-left-color: #f59e0b; }
-        button { 
-            background: #667eea; 
-            color: white; 
-            border: none; 
-            padding: 10px 20px; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            margin: 5px;
-        }
-        button:hover { background: #5b6edf; }
-        #results { margin-top: 20px; }
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #1f2937;
+        color: white;
+      }
+      .test {
+        background: #374151;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+      .success {
+        border-left-color: #10b981;
+      }
+      .error {
+        border-left-color: #ef4444;
+      }
+      .warning {
+        border-left-color: #f59e0b;
+      }
+      button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #5b6edf;
+      }
+      #results {
+        margin-top: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>🔧 PWA Test - InstaChecker v3.0</h1>
     <p>Testando funcionalidades PWA e recursos offline</p>
-    
+
     <button onclick="testManifest()">Test Manifest</button>
     <button onclick="testServiceWorker()">Test Service Worker</button>
     <button onclick="testAssets()">Test Assets</button>
     <button onclick="testInstallability()">Test Installability</button>
     <button onclick="runAllTests()">Run All Tests</button>
-    
+
     <div id="results"></div>
 
     <script>
-        const results = document.getElementById('results');
-        
-        function addResult(title, status, message) {
-            const div = document.createElement('div');
-            div.className = `test ${status}`;
-            div.innerHTML = `<strong>${title}</strong><br>${message}`;
-            results.appendChild(div);
+      const results = document.getElementById("results");
+
+      function addResult(title, status, message) {
+        const div = document.createElement("div");
+        div.className = `test ${status}`;
+        div.innerHTML = `<strong>${title}</strong><br>${message}`;
+        results.appendChild(div);
+      }
+
+      async function testManifest() {
+        try {
+          const response = await fetch("/public/manifest.webmanifest");
+          if (response.ok) {
+            const manifest = await response.json();
+            addResult(
+              "Manifest Test",
+              "success",
+              `✅ Manifest carregado: ${manifest.name} v${
+                manifest.version || "3.0"
+              }`
+            );
+          } else {
+            addResult(
+              "Manifest Test",
+              "error",
+              `❌ Manifest não encontrado: ${response.status}`
+            );
+          }
+        } catch (error) {
+          addResult(
+            "Manifest Test",
+            "error",
+            `❌ Erro ao carregar manifest: ${error.message}`
+          );
         }
-        
-        async function testManifest() {
-            try {
-                const response = await fetch('/public/manifest.webmanifest');
-                if (response.ok) {
-                    const manifest = await response.json();
-                    addResult('Manifest Test', 'success', 
-                        `✅ Manifest carregado: ${manifest.name} v${manifest.version || '3.0'}`);
-                } else {
-                    addResult('Manifest Test', 'error', 
-                        `❌ Manifest não encontrado: ${response.status}`);
-                }
-            } catch (error) {
-                addResult('Manifest Test', 'error', 
-                    `❌ Erro ao carregar manifest: ${error.message}`);
-            }
-        }
-        
-        async function testServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                try {
-                    const registration = await navigator.serviceWorker.register('/public/sw.js');
-                    addResult('Service Worker Test', 'success', 
-                        `✅ Service Worker registrado: ${registration.scope}`);
-                    
-                    if (registration.active) {
-                        addResult('SW Status', 'success', '✅ Service Worker ativo');
-                    } else if (registration.installing) {
-                        addResult('SW Status', 'warning', '⏳ Service Worker instalando...');
-                    } else {
-                        addResult('SW Status', 'warning', '⏳ Service Worker aguardando ativação');
-                    }
-                } catch (error) {
-                    addResult('Service Worker Test', 'error', 
-                        `❌ Erro no Service Worker: ${error.message}`);
-                }
+      }
+
+      async function testServiceWorker() {
+        if ("serviceWorker" in navigator) {
+          try {
+            const registration = await navigator.serviceWorker.register(
+              "/public/sw.js"
+            );
+            addResult(
+              "Service Worker Test",
+              "success",
+              `✅ Service Worker registrado: ${registration.scope}`
+            );
+
+            if (registration.active) {
+              addResult("SW Status", "success", "✅ Service Worker ativo");
+            } else if (registration.installing) {
+              addResult(
+                "SW Status",
+                "warning",
+                "⏳ Service Worker instalando..."
+              );
             } else {
-                addResult('Service Worker Test', 'error', 
-                    '❌ Service Worker não suportado');
+              addResult(
+                "SW Status",
+                "warning",
+                "⏳ Service Worker aguardando ativação"
+              );
             }
+          } catch (error) {
+            addResult(
+              "Service Worker Test",
+              "error",
+              `❌ Erro no Service Worker: ${error.message}`
+            );
+          }
+        } else {
+          addResult(
+            "Service Worker Test",
+            "error",
+            "❌ Service Worker não suportado"
+          );
         }
-        
-        async function testAssets() {
-            const assets = [
-                '/src/app.js',
-                '/src/styles.css', 
-                '/src/instachecker-app.js',
-                '/public/assets/instachecker-icon.svg'
-            ];
-            
-            for (const asset of assets) {
-                try {
-                    const response = await fetch(asset);
-                    if (response.ok) {
-                        addResult(`Asset: ${asset}`, 'success', `✅ Carregado (${response.status})`);
-                    } else {
-                        addResult(`Asset: ${asset}`, 'error', `❌ Não encontrado (${response.status})`);
-                    }
-                } catch (error) {
-                    addResult(`Asset: ${asset}`, 'error', `❌ Erro: ${error.message}`);
-                }
-            }
-        }
-        
-        async function testInstallability() {
-            // Test install prompt
-            let installPrompt = null;
-            
-            window.addEventListener('beforeinstallprompt', (e) => {
-                installPrompt = e;
-                addResult('Install Prompt', 'success', '✅ App pode ser instalado');
-            });
-            
-            // Check if already installed
-            if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
-                addResult('Installation Status', 'success', '✅ App já instalado');
+      }
+
+      async function testAssets() {
+        const assets = [
+          "/src/app.js",
+          "/src/styles.css",
+          "/src/instachecker-app.js",
+          "/public/assets/instachecker-icon.svg",
+        ];
+
+        for (const asset of assets) {
+          try {
+            const response = await fetch(asset);
+            if (response.ok) {
+              addResult(
+                `Asset: ${asset}`,
+                "success",
+                `✅ Carregado (${response.status})`
+              );
             } else {
-                addResult('Installation Status', 'warning', '⏳ App não instalado');
+              addResult(
+                `Asset: ${asset}`,
+                "error",
+                `❌ Não encontrado (${response.status})`
+              );
             }
-            
-            // Check PWA features
-            if ('serviceWorker' in navigator) {
-                addResult('PWA Feature', 'success', '✅ Service Worker suportado');
-            }
-            
-            if (window.navigator && window.navigator.standalone !== undefined) {
-                addResult('PWA Feature', 'success', '✅ iOS PWA suportado');
-            }
+          } catch (error) {
+            addResult(`Asset: ${asset}`, "error", `❌ Erro: ${error.message}`);
+          }
         }
-        
-        async function runAllTests() {
-            results.innerHTML = '<h3>🔄 Executando todos os testes...</h3>';
-            
-            await testManifest();
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            await testServiceWorker();
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            await testAssets();
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            await testInstallability();
-            
-            addResult('All Tests', 'success', '✅ Todos os testes concluídos');
+      }
+
+      async function testInstallability() {
+        // Test install prompt
+        let installPrompt = null;
+
+        window.addEventListener("beforeinstallprompt", (e) => {
+          installPrompt = e;
+          addResult("Install Prompt", "success", "✅ App pode ser instalado");
+        });
+
+        // Check if already installed
+        if (
+          window.matchMedia &&
+          window.matchMedia("(display-mode: standalone)").matches
+        ) {
+          addResult("Installation Status", "success", "✅ App já instalado");
+        } else {
+          addResult("Installation Status", "warning", "⏳ App não instalado");
         }
-        
-        // Auto-run basic tests
-        setTimeout(() => {
-            testManifest();
-            testServiceWorker();
-        }, 1000);
+
+        // Check PWA features
+        if ("serviceWorker" in navigator) {
+          addResult("PWA Feature", "success", "✅ Service Worker suportado");
+        }
+
+        if (window.navigator && window.navigator.standalone !== undefined) {
+          addResult("PWA Feature", "success", "✅ iOS PWA suportado");
+        }
+      }
+
+      async function runAllTests() {
+        results.innerHTML = "<h3>🔄 Executando todos os testes...</h3>";
+
+        await testManifest();
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        await testServiceWorker();
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        await testAssets();
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        await testInstallability();
+
+        addResult("All Tests", "success", "✅ Todos os testes concluídos");
+      }
+
+      // Auto-run basic tests
+      setTimeout(() => {
+        testManifest();
+        testServiceWorker();
+      }, 1000);
     </script>
-</body>
+  </body>
 </html>
