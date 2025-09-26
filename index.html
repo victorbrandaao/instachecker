@@ -2,145 +2,215 @@
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>InstaChecker v2.0 — Análise Inteligente do Instagram</title>
-    <meta name="description" content="Ferramenta moderna para analisar seguidores do Instagram com design premium e insights avançados." />
-    <meta name="theme-color" content="#8b5cf6" />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="icon" type="image/svg+xml" href="assets/instachecker-icon.svg" />
-    
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>InstaChecker v3.0 — Análise Premium do Instagram</title>
+    <meta
+      name="description"
+      content="Ferramenta premium para analisar seguidores do Instagram com design moderno Tailwind CSS e recursos avançados offline."
+    />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="InstaChecker" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#1f2937" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- PWA Links -->
+    <link rel="manifest" href="public/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="public/assets/instachecker-icon.svg" />
+    <link rel="apple-touch-icon" href="assets/instachecker-icon.svg" />
+    <link rel="mask-icon" href="assets/instachecker-icon.svg" color="#667eea" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="InstaChecker v3.0 — Análise Premium do Instagram"
+    />
+    <meta
+      property="og:description"
+      content="Ferramenta premium para analisar seguidores do Instagram com design moderno e recursos avançados."
+    />
+    <meta property="og:image" content="assets/instachecker-icon.svg" />
+    <meta
+      property="og:url"
+      content="https://victorbrandao.tech/instachecker/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="InstaChecker v3.0" />
+    <meta
+      name="twitter:description"
+      content="Análise premium de seguidores do Instagram"
+    />
+    <meta name="twitter:image" content="assets/instachecker-icon.svg" />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Enhanced Styles -->
-    <link rel="stylesheet" href="styles-v3-tailwind.css">
+        <!-- Custom Enhanced Styles -->
+    <link rel="stylesheet" href="src/styles.css">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
+              sans: ["Inter", "system-ui", "sans-serif"],
             },
             animation: {
-              'fade-in': 'fadeIn 0.5s ease-in-out',
-              'slide-up': 'slideUp 0.6s ease-out',
-              'bounce-subtle': 'bounceSubtle 2s infinite',
-              'gradient': 'gradient 15s ease infinite',
-              'float': 'float 6s ease-in-out infinite',
+              "fade-in": "fadeIn 0.5s ease-in-out",
+              "slide-up": "slideUp 0.6s ease-out",
+              "bounce-subtle": "bounceSubtle 2s infinite",
+              gradient: "gradient 15s ease infinite",
+              float: "float 6s ease-in-out infinite",
             },
             keyframes: {
               fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
               },
               slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
               },
               bounceSubtle: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
               },
               gradient: {
-                '0%, 100%': { backgroundPosition: '0% 50%' },
-                '50%': { backgroundPosition: '100% 50%' },
+                "0%, 100%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
               },
               float: {
-                '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-20px)' },
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
               },
             },
             backgroundSize: {
-              '300%': '300% 300%',
+              "300%": "300% 300%",
             },
-          }
-        }
-      }
+          },
+        },
+      };
     </script>
-    
+
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <!-- Custom Animations -->
     <style>
       .bg-gradient-animated {
-        background: linear-gradient(-45deg, #667eea, #764ba2, #6B73FF, #000428);
+        background: linear-gradient(-45deg, #667eea, #764ba2, #6b73ff, #000428);
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
       }
-      
+
       .glass {
         backdrop-filter: blur(20px);
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
-      
+
       .glass-dark {
         backdrop-filter: blur(20px);
         background: rgba(0, 0, 0, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
+
       .text-gradient {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      
+
       .btn-gradient {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         transition: all 0.3s ease;
       }
-      
+
       .btn-gradient:hover {
         background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         transform: translateY(-2px);
         box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
       }
-      
+
       .card-hover:hover {
         transform: translateY(-5px);
         transition: all 0.3s ease;
       }
-      
+
       .pill {
         transition: all 0.2s ease;
       }
-      
+
       .pill:hover {
         transform: scale(1.05);
         box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
       }
     </style>
   </head>
-  
+
   <body class="min-h-screen bg-gray-900 text-white font-sans">
     <!-- Background Pattern -->
-    <div class="fixed inset-0 bg-gradient-animated opacity-10 pointer-events-none"></div>
-    
+    <div
+      class="fixed inset-0 bg-gradient-animated opacity-10 pointer-events-none"
+    ></div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-dark">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+            >
               <i class="fab fa-instagram text-white text-lg"></i>
             </div>
             <div class="text-xl font-bold">
               InstaChecker
-              <span class="ml-2 px-2 py-1 text-xs bg-yellow-500 text-black rounded-full font-semibold">v2.0</span>
+              <span
+                class="ml-2 px-2 py-1 text-xs bg-yellow-500 text-black rounded-full font-semibold"
+                >v2.0</span
+              >
             </div>
           </div>
           <div class="flex items-center space-x-4">
-            <button id="theme-toggle" class="p-2 rounded-lg glass hover:bg-white/20 transition-all duration-200">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg glass hover:bg-white/20 transition-all duration-200"
+            >
               <i class="fas fa-moon"></i>
             </button>
-            <button onclick="openHelpModal()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+            <button
+              onclick="openHelpModal()"
+              class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+            >
               <i class="fas fa-question-circle mr-2"></i>
               Ajuda
             </button>
@@ -148,53 +218,68 @@
         </div>
       </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="relative pt-24 pb-20 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Content -->
           <div class="space-y-8 animate-fade-in">
-            <div class="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30">
+            <div
+              class="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30"
+            >
               <i class="fas fa-sparkles text-yellow-400 mr-2"></i>
-              <span class="text-sm font-medium">Nova versão 2.0 disponível</span>
+              <span class="text-sm font-medium"
+                >Nova versão 2.0 disponível</span
+              >
             </div>
-            
+
             <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight">
               Análise
               <span class="text-gradient">Inteligente</span>
               do Instagram
             </h1>
-            
+
             <p class="text-xl text-gray-300 leading-relaxed max-w-2xl">
-              Descubra insights profundos sobre seus seguidores com nossa ferramenta premium. 
-              Interface moderna, análise avançada e 100% privacidade garantida.
+              Descubra insights profundos sobre seus seguidores com nossa
+              ferramenta premium. Interface moderna, análise avançada e 100%
+              privacidade garantida.
             </p>
-            
+
             <!-- Features -->
             <div class="grid sm:grid-cols-3 gap-4">
               <div class="flex items-center space-x-3 p-4 rounded-xl glass">
-                <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                <div
+                  class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center"
+                >
                   <i class="fas fa-shield-check text-green-400"></i>
                 </div>
                 <div>
                   <div class="font-semibold">100% Privado</div>
-                  <div class="text-sm text-gray-400">Dados no seu dispositivo</div>
+                  <div class="text-sm text-gray-400">
+                    Dados no seu dispositivo
+                  </div>
                 </div>
               </div>
-              
+
               <div class="flex items-center space-x-3 p-4 rounded-xl glass">
-                <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                <div
+                  class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center"
+                >
                   <i class="fas fa-bolt text-blue-400"></i>
                 </div>
                 <div>
                   <div class="font-semibold">Super Rápido</div>
-                  <div class="text-sm text-gray-400">Processamento otimizado</div>
+                  <div class="text-sm text-gray-400">
+                    Processamento otimizado
+                  </div>
                 </div>
               </div>
-              
+
               <div class="flex items-center space-x-3 p-4 rounded-xl glass">
-                <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                <div
+                  class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center"
+                >
                   <i class="fas fa-chart-line text-purple-400"></i>
                 </div>
                 <div>
@@ -203,28 +288,39 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4">
-              <button onclick="scrollToUpload()" class="btn-gradient px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center">
+              <button
+                onclick="scrollToUpload()"
+                class="btn-gradient px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center"
+              >
                 <i class="fas fa-upload mr-3"></i>
                 Começar Análise
               </button>
-              <button onclick="openDemoModal()" class="px-8 py-4 rounded-xl border-2 border-gray-600 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300 font-semibold">
+              <button
+                onclick="openDemoModal()"
+                class="px-8 py-4 rounded-xl border-2 border-gray-600 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300 font-semibold"
+              >
                 <i class="fas fa-play mr-3"></i>
                 Ver Demonstração
               </button>
             </div>
           </div>
-          
+
           <!-- Visual -->
           <div class="relative hidden lg:block">
             <div class="grid grid-cols-2 gap-6">
               <!-- Floating Stats Cards -->
               <div class="space-y-6">
-                <div class="glass-dark p-6 rounded-2xl animate-float card-hover" style="animation-delay: 0s;">
+                <div
+                  class="glass-dark p-6 rounded-2xl animate-float card-hover"
+                  style="animation-delay: 0s"
+                >
                   <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                    <div
+                      class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center"
+                    >
                       <i class="fas fa-users text-white"></i>
                     </div>
                     <i class="fas fa-trending-up text-green-400"></i>
@@ -232,10 +328,15 @@
                   <div class="text-3xl font-bold mb-1">2.4K</div>
                   <div class="text-gray-400 text-sm">Seguidores</div>
                 </div>
-                
-                <div class="glass-dark p-6 rounded-2xl animate-float card-hover" style="animation-delay: 2s;">
+
+                <div
+                  class="glass-dark p-6 rounded-2xl animate-float card-hover"
+                  style="animation-delay: 2s"
+                >
                   <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                    <div
+                      class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+                    >
                       <i class="fas fa-heart text-white"></i>
                     </div>
                     <i class="fas fa-trending-up text-green-400"></i>
@@ -244,11 +345,16 @@
                   <div class="text-gray-400 text-sm">Mútuos</div>
                 </div>
               </div>
-              
+
               <div class="space-y-6 mt-12">
-                <div class="glass-dark p-6 rounded-2xl animate-float card-hover" style="animation-delay: 1s;">
+                <div
+                  class="glass-dark p-6 rounded-2xl animate-float card-hover"
+                  style="animation-delay: 1s"
+                >
                   <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                    <div
+                      class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center"
+                    >
                       <i class="fas fa-user-plus text-white"></i>
                     </div>
                     <i class="fas fa-trending-down text-red-400"></i>
@@ -256,10 +362,15 @@
                   <div class="text-3xl font-bold mb-1">1.9K</div>
                   <div class="text-gray-400 text-sm">Seguindo</div>
                 </div>
-                
-                <div class="glass-dark p-6 rounded-2xl animate-float card-hover" style="animation-delay: 3s;">
+
+                <div
+                  class="glass-dark p-6 rounded-2xl animate-float card-hover"
+                  style="animation-delay: 3s"
+                >
                   <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                    <div
+                      class="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center"
+                    >
                       <i class="fas fa-chart-pie text-white"></i>
                     </div>
                     <div class="text-green-400 text-sm font-semibold">94%</div>
@@ -273,7 +384,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- Upload Section -->
     <section id="upload-section" class="py-20">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -282,52 +393,76 @@
             <i class="fas fa-cloud-upload-alt text-purple-500 mr-3"></i>
             Importar Dados do Instagram
           </h2>
-          <p class="text-gray-400 text-lg">Arraste seu arquivo ZIP ou clique para selecionar</p>
+          <p class="text-gray-400 text-lg">
+            Arraste seu arquivo ZIP ou clique para selecionar
+          </p>
         </div>
-        
+
         <!-- Upload Card -->
         <div class="glass-dark rounded-3xl p-8 lg:p-12">
           <!-- Upload Area -->
-          <div id="uploader" class="border-2 border-dashed border-gray-600 rounded-2xl p-12 text-center hover:border-purple-500 hover:bg-purple-500/5 transition-all duration-300 group cursor-pointer">
+          <div
+            id="uploader"
+            class="border-2 border-dashed border-gray-600 rounded-2xl p-12 text-center hover:border-purple-500 hover:bg-purple-500/5 transition-all duration-300 group cursor-pointer"
+          >
             <div class="space-y-6">
-              <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div
+                class="w-20 h-20 mx-auto rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+              >
                 <i class="fas fa-file-zipper text-2xl text-white"></i>
               </div>
-              
+
               <div>
                 <h3 class="text-2xl font-semibold mb-2">Arraste o ZIP aqui</h3>
-                <p class="text-gray-400 mb-6">ou clique para selecionar arquivos</p>
-                
-                <button id="pick-btn" class="btn-gradient px-8 py-3 rounded-xl font-semibold">
+                <p class="text-gray-400 mb-6">
+                  ou clique para selecionar arquivos
+                </p>
+
+                <button
+                  id="pick-btn"
+                  class="btn-gradient px-8 py-3 rounded-xl font-semibold"
+                >
                   <i class="fas fa-folder-open mr-2"></i>
                   Escolher Arquivos
                 </button>
-                
-                <input type="file" id="instagram-files" multiple accept=".zip,.json" class="hidden" />
+
+                <input
+                  type="file"
+                  id="instagram-files"
+                  multiple
+                  accept=".zip,.json"
+                  class="hidden"
+                />
               </div>
-              
+
               <div class="text-sm text-gray-500">
                 <i class="fas fa-info-circle mr-2"></i>
                 Suporta ZIP do Instagram ou arquivos JSON individuais
               </div>
             </div>
           </div>
-          
+
           <!-- Upload Status -->
-          <div id="upload-status" class="mt-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+          <div
+            id="upload-status"
+            class="mt-6 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"
+          >
             <i class="fas fa-upload text-blue-400 mr-3"></i>
             <span>Pronto para receber seus arquivos do Instagram</span>
           </div>
-          
+
           <!-- Error Alert -->
-          <div id="error-alert" class="hidden mt-6 p-4 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300">
+          <div
+            id="error-alert"
+            class="hidden mt-6 p-4 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300"
+          >
             <i class="fas fa-exclamation-triangle mr-2"></i>
             <span></span>
           </div>
         </div>
       </div>
     </section>
-    
+
     <!-- Results Section -->
     <section id="results-section" class="py-20 hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -337,15 +472,19 @@
             <i class="fas fa-chart-bar text-purple-500 mr-3"></i>
             Dashboard de Análise
           </h2>
-          <p class="text-gray-400 text-lg">Insights detalhados sobre seus seguidores</p>
+          <p class="text-gray-400 text-lg">
+            Insights detalhados sobre seus seguidores
+          </p>
         </div>
-        
+
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <!-- Seguidores -->
           <div class="glass-dark rounded-2xl p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center"
+              >
                 <i class="fas fa-users text-white"></i>
               </div>
               <i class="fas fa-trending-up text-green-400"></i>
@@ -353,11 +492,13 @@
             <div id="total-followers" class="text-3xl font-bold mb-1">0</div>
             <div class="text-gray-400">Seguidores</div>
           </div>
-          
+
           <!-- Seguindo -->
           <div class="glass-dark rounded-2xl p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center"
+              >
                 <i class="fas fa-user-plus text-white"></i>
               </div>
               <i class="fas fa-trending-down text-red-400"></i>
@@ -365,11 +506,13 @@
             <div id="total-following" class="text-3xl font-bold mb-1">0</div>
             <div class="text-gray-400">Seguindo</div>
           </div>
-          
+
           <!-- Mútuos -->
           <div class="glass-dark rounded-2xl p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+              >
                 <i class="fas fa-heart text-white"></i>
               </div>
               <i class="fas fa-heart text-pink-400"></i>
@@ -377,11 +520,13 @@
             <div id="total-mutuals" class="text-3xl font-bold mb-1">0</div>
             <div class="text-gray-400">Mútuos</div>
           </div>
-          
+
           <!-- Balanço -->
           <div class="glass-dark rounded-2xl p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center"
+              >
                 <i class="fas fa-balance-scale text-white"></i>
               </div>
               <div id="balance-trend" class="text-gray-400">
@@ -392,7 +537,7 @@
             <div class="text-gray-400">Balanço</div>
           </div>
         </div>
-        
+
         <!-- Engagement Progress -->
         <div class="glass-dark rounded-2xl p-8 mb-8">
           <div class="grid md:grid-cols-3 gap-8 items-center">
@@ -403,20 +548,30 @@
               </h3>
               <div class="relative">
                 <div class="w-full bg-gray-700 rounded-full h-4 mb-4">
-                  <div id="mutual-progress" class="bg-gradient-to-r from-purple-500 to-pink-500 h-4 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                  <div
+                    id="mutual-progress"
+                    class="bg-gradient-to-r from-purple-500 to-pink-500 h-4 rounded-full transition-all duration-1000"
+                    style="width: 0%"
+                  ></div>
                 </div>
                 <div class="flex justify-between text-sm text-gray-400">
                   <span>0%</span>
                   <span>100%</span>
                 </div>
               </div>
-              <p id="insight-text" class="text-gray-400 mt-4">Faça upload para ver as sugestões...</p>
+              <p id="insight-text" class="text-gray-400 mt-4">
+                Faça upload para ver as sugestões...
+              </p>
             </div>
-            
+
             <div class="text-center">
-              <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mb-4">
+              <div
+                class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mb-4"
+              >
                 <div class="text-center">
-                  <div id="summary-follow-back" class="text-3xl font-bold">0</div>
+                  <div id="summary-follow-back" class="text-3xl font-bold">
+                    0
+                  </div>
                   <div class="text-sm">Não seguem</div>
                 </div>
               </div>
@@ -424,164 +579,250 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Controls -->
         <div class="glass-dark rounded-2xl p-6 mb-8">
           <div class="grid md:grid-cols-3 gap-4 items-center">
             <div class="relative">
-              <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-              <input id="search-input" type="text" placeholder="Buscar por username..." 
-                     class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200">
+              <i
+                class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+              ></i>
+              <input
+                id="search-input"
+                type="text"
+                placeholder="Buscar por username..."
+                class="w-full pl-12 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+              />
             </div>
-            
-            <select id="sort-select" class="px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200">
+
+            <select
+              id="sort-select"
+              class="px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+            >
               <option value="asc">A-Z</option>
               <option value="desc">Z-A</option>
               <option value="len">Nome mais curto</option>
               <option value="len-desc">Nome mais longo</option>
             </select>
-            
-            <button id="clear-btn" class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-xl transition-colors duration-200 font-medium">
+
+            <button
+              id="clear-btn"
+              class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-xl transition-colors duration-200 font-medium"
+            >
               <i class="fas fa-trash mr-2"></i>
               Limpar Dados
             </button>
           </div>
-          
+
           <!-- Filter Feedback -->
-          <div id="filter-feedback" class="hidden mt-4 p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-300">
+          <div
+            id="filter-feedback"
+            class="hidden mt-4 p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-300"
+          >
             <i class="fas fa-filter mr-2"></i>
             <span></span>
           </div>
         </div>
-        
+
         <!-- Tabs -->
         <div class="glass-dark rounded-2xl overflow-hidden mb-8">
           <div class="flex flex-col sm:flex-row">
-            <button class="tab-button active flex-1 px-6 py-4 text-left hover:bg-white/10 transition-colors duration-200 border-b-2 border-purple-500" 
-                    data-bs-toggle="tab" data-bs-target="#not-following-back-tab" data-view="notFollowingBack">
+            <button
+              class="tab-button active flex-1 px-6 py-4 text-left hover:bg-white/10 transition-colors duration-200 border-b-2 border-purple-500"
+              data-bs-toggle="tab"
+              data-bs-target="#not-following-back-tab"
+              data-view="notFollowingBack"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
                   <i class="fas fa-user-xmark text-red-400 mr-3"></i>
                   <div>
                     <div class="font-semibold">Não te seguem</div>
-                    <div class="text-sm text-gray-400">Pessoas que você segue</div>
+                    <div class="text-sm text-gray-400">
+                      Pessoas que você segue
+                    </div>
                   </div>
                 </div>
-                <span id="not-following-back-tab-count" class="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm font-medium">0</span>
+                <span
+                  id="not-following-back-tab-count"
+                  class="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm font-medium"
+                  >0</span
+                >
               </div>
             </button>
-            
-            <button class="tab-button flex-1 px-6 py-4 text-left hover:bg-white/10 transition-colors duration-200" 
-                    data-bs-toggle="tab" data-bs-target="#not-followed-back-tab" data-view="notFollowedBack">
+
+            <button
+              class="tab-button flex-1 px-6 py-4 text-left hover:bg-white/10 transition-colors duration-200"
+              data-bs-toggle="tab"
+              data-bs-target="#not-followed-back-tab"
+              data-view="notFollowedBack"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
                   <i class="fas fa-user-plus text-yellow-400 mr-3"></i>
                   <div>
                     <div class="font-semibold">Você não segue</div>
-                    <div class="text-sm text-gray-400">Seguidores esperando</div>
+                    <div class="text-sm text-gray-400">
+                      Seguidores esperando
+                    </div>
                   </div>
                 </div>
-                <span id="not-followed-back-tab-count" class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm font-medium">0</span>
+                <span
+                  id="not-followed-back-tab-count"
+                  class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm font-medium"
+                  >0</span
+                >
               </div>
             </button>
-            
-            <button class="tab-button flex-1 px-6 py-4 text-left hover:bg-white/10 transition-colors duration-200" 
-                    data-bs-toggle="tab" data-bs-target="#mutuals-tab" data-view="mutuals">
+
+            <button
+              class="tab-button flex-1 px-6 py-4 text-left hover:bg-white/10 transition-colors duration-200"
+              data-bs-toggle="tab"
+              data-bs-target="#mutuals-tab"
+              data-view="mutuals"
+            >
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
                   <i class="fas fa-handshake text-green-400 mr-3"></i>
                   <div>
                     <div class="font-semibold">Mútuos</div>
-                    <div class="text-sm text-gray-400">Seguem-se mutuamente</div>
+                    <div class="text-sm text-gray-400">
+                      Seguem-se mutuamente
+                    </div>
                   </div>
                 </div>
-                <span id="mutuals-tab-count" class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm font-medium">0</span>
+                <span
+                  id="mutuals-tab-count"
+                  class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm font-medium"
+                  >0</span
+                >
               </div>
             </button>
           </div>
         </div>
-        
+
         <!-- Tab Content -->
         <div class="tab-content">
           <!-- Não seguem você -->
           <div id="not-following-back-tab" class="tab-pane active">
             <div class="glass-dark rounded-2xl overflow-hidden">
-              <div class="p-6 border-b border-gray-700 flex items-center justify-between">
+              <div
+                class="p-6 border-b border-gray-700 flex items-center justify-between"
+              >
                 <div class="flex items-center">
                   <i class="fas fa-user-xmark text-red-400 mr-3 text-xl"></i>
                   <div>
-                    <h3 class="text-xl font-semibold">Não te seguem de volta</h3>
+                    <h3 class="text-xl font-semibold">
+                      Não te seguem de volta
+                    </h3>
                     <p class="text-gray-400 text-sm">
-                      <span id="not-following-back-count" class="font-medium">0</span> pessoas
+                      <span id="not-following-back-count" class="font-medium"
+                        >0</span
+                      >
+                      pessoas
                     </p>
                   </div>
                 </div>
                 <div class="flex space-x-3">
-                  <button data-copy="notFollowingBack" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  <button
+                    data-copy="notFollowingBack"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
                     <i class="fas fa-copy mr-2"></i>
                     Copiar
                   </button>
-                  <button id="export-not-following-back" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  <button
+                    id="export-not-following-back"
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
                     <i class="fas fa-download mr-2"></i>
                     Exportar CSV
                   </button>
                 </div>
               </div>
-              <div id="not-following-back-list" class="p-6 max-h-96 overflow-y-auto">
+              <div
+                id="not-following-back-list"
+                class="p-6 max-h-96 overflow-y-auto"
+              >
                 <!-- Lista será preenchida dinamicamente -->
               </div>
             </div>
           </div>
-          
+
           <!-- Você não segue -->
           <div id="not-followed-back-tab" class="tab-pane hidden">
             <div class="glass-dark rounded-2xl overflow-hidden">
-              <div class="p-6 border-b border-gray-700 flex items-center justify-between">
+              <div
+                class="p-6 border-b border-gray-700 flex items-center justify-between"
+              >
                 <div class="flex items-center">
                   <i class="fas fa-user-plus text-yellow-400 mr-3 text-xl"></i>
                   <div>
-                    <h3 class="text-xl font-semibold">Você não segue de volta</h3>
+                    <h3 class="text-xl font-semibold">
+                      Você não segue de volta
+                    </h3>
                     <p class="text-gray-400 text-sm">
-                      <span id="not-followed-back-count" class="font-medium">0</span> pessoas
+                      <span id="not-followed-back-count" class="font-medium"
+                        >0</span
+                      >
+                      pessoas
                     </p>
                   </div>
                 </div>
                 <div class="flex space-x-3">
-                  <button data-copy="notFollowedBack" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  <button
+                    data-copy="notFollowedBack"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
                     <i class="fas fa-copy mr-2"></i>
                     Copiar
                   </button>
-                  <button id="export-not-followed-back" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  <button
+                    id="export-not-followed-back"
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
                     <i class="fas fa-download mr-2"></i>
                     Exportar CSV
                   </button>
                 </div>
               </div>
-              <div id="not-followed-back-list" class="p-6 max-h-96 overflow-y-auto">
+              <div
+                id="not-followed-back-list"
+                class="p-6 max-h-96 overflow-y-auto"
+              >
                 <!-- Lista será preenchida dinamicamente -->
               </div>
             </div>
           </div>
-          
+
           <!-- Mútuos -->
           <div id="mutuals-tab" class="tab-pane hidden">
             <div class="glass-dark rounded-2xl overflow-hidden">
-              <div class="p-6 border-b border-gray-700 flex items-center justify-between">
+              <div
+                class="p-6 border-b border-gray-700 flex items-center justify-between"
+              >
                 <div class="flex items-center">
                   <i class="fas fa-handshake text-green-400 mr-3 text-xl"></i>
                   <div>
                     <h3 class="text-xl font-semibold">Seguidores mútuos</h3>
                     <p class="text-gray-400 text-sm">
-                      <span id="mutuals-count" class="font-medium">0</span> pessoas
+                      <span id="mutuals-count" class="font-medium">0</span>
+                      pessoas
                     </p>
                   </div>
                 </div>
                 <div class="flex space-x-3">
-                  <button data-copy="mutuals" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  <button
+                    data-copy="mutuals"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
                     <i class="fas fa-copy mr-2"></i>
                     Copiar
                   </button>
-                  <button id="export-mutuals" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  <button
+                    id="export-mutuals"
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
                     <i class="fas fa-download mr-2"></i>
                     Exportar CSV
                   </button>
@@ -593,19 +834,25 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Quick Actions -->
         <div class="grid md:grid-cols-2 gap-6 mt-8">
-          <button id="copy-current" class="btn-gradient p-6 rounded-2xl font-semibold text-lg">
+          <button
+            id="copy-current"
+            class="btn-gradient p-6 rounded-2xl font-semibold text-lg"
+          >
             <i class="fas fa-copy mr-3"></i>
             Copiar Lista Atual
           </button>
-          <button onclick="scrollToUpload()" class="p-6 rounded-2xl border-2 border-gray-600 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300 font-semibold text-lg">
+          <button
+            onclick="scrollToUpload()"
+            class="p-6 rounded-2xl border-2 border-gray-600 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300 font-semibold text-lg"
+          >
             <i class="fas fa-redo mr-3"></i>
             Nova Análise
           </button>
         </div>
-        
+
         <!-- Result Notice -->
         <div id="result-notice" class="hidden mt-8 p-4 rounded-xl">
           <div class="flex items-center">
@@ -615,12 +862,14 @@
         </div>
       </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="flex items-center justify-center space-x-2 mb-4">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
+          >
             <i class="fab fa-instagram text-white text-sm"></i>
           </div>
           <span class="text-xl font-bold">InstaChecker v2.0</span>
@@ -630,125 +879,170 @@
         </p>
       </div>
     </footer>
-    
+
     <!-- Help Modal -->
     <div id="help-modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-      <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
-        <div class="fixed inset-0 transition-opacity bg-black/70" onclick="closeHelpModal()"></div>
-        
-        <div class="inline-block w-full max-w-2xl p-8 my-8 text-left align-middle transition-all transform glass-dark rounded-3xl shadow-xl">
+      <div
+        class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0"
+      >
+        <div
+          class="fixed inset-0 transition-opacity bg-black/70"
+          onclick="closeHelpModal()"
+        ></div>
+
+        <div
+          class="inline-block w-full max-w-2xl p-8 my-8 text-left align-middle transition-all transform glass-dark rounded-3xl shadow-xl"
+        >
           <div class="flex items-center justify-between mb-6">
             <h3 class="text-2xl font-bold text-white flex items-center">
               <i class="fas fa-question-circle text-purple-500 mr-3"></i>
               Como usar o InstaChecker
             </h3>
-            <button onclick="closeHelpModal()" class="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200">
+            <button
+              onclick="closeHelpModal()"
+              class="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+            >
               <i class="fas fa-times text-gray-400"></i>
             </button>
           </div>
-          
+
           <div class="space-y-6">
             <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold"
+              >
+                1
+              </div>
               <div>
-                <h4 class="text-lg font-semibold mb-2">Baixar dados do Instagram</h4>
-                <p class="text-gray-300">Acesse Instagram → Configurações → Privacidade → Baixar dados. Escolha formato JSON e aguarde o email.</p>
+                <h4 class="text-lg font-semibold mb-2">
+                  Baixar dados do Instagram
+                </h4>
+                <p class="text-gray-300">
+                  Acesse Instagram → Configurações → Privacidade → Baixar dados.
+                  Escolha formato JSON e aguarde o email.
+                </p>
               </div>
             </div>
-            
+
             <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold"
+              >
+                2
+              </div>
               <div>
-                <h4 class="text-lg font-semibold mb-2">Fazer upload do arquivo</h4>
-                <p class="text-gray-300">Arraste o arquivo ZIP para a área de upload ou clique em "Escolher Arquivos".</p>
+                <h4 class="text-lg font-semibold mb-2">
+                  Fazer upload do arquivo
+                </h4>
+                <p class="text-gray-300">
+                  Arraste o arquivo ZIP para a área de upload ou clique em
+                  "Escolher Arquivos".
+                </p>
               </div>
             </div>
-            
+
             <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold"
+              >
+                3
+              </div>
               <div>
-                <h4 class="text-lg font-semibold mb-2">Analisar os resultados</h4>
-                <p class="text-gray-300">Explore as abas para descobrir quem não segue você, quem você não segue e seus seguidores mútuos.</p>
+                <h4 class="text-lg font-semibold mb-2">
+                  Analisar os resultados
+                </h4>
+                <p class="text-gray-300">
+                  Explore as abas para descobrir quem não segue você, quem você
+                  não segue e seus seguidores mútuos.
+                </p>
               </div>
             </div>
           </div>
-          
-          <div class="mt-8 p-4 bg-green-500/20 border border-green-500/30 rounded-xl">
+
+          <div
+            class="mt-8 p-4 bg-green-500/20 border border-green-500/30 rounded-xl"
+          >
             <div class="flex items-center">
               <i class="fas fa-shield-check text-green-400 mr-3"></i>
               <span class="text-green-300 font-semibold">100% Privado:</span>
-              <span class="text-gray-300 ml-2">Seus dados são processados localmente no navegador.</span>
+              <span class="text-gray-300 ml-2"
+                >Seus dados são processados localmente no navegador.</span
+              >
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-    <script type="module" src="app-v3-tailwind.js"></script>
-    <script src="app-v2-enhancements.js"></script>
-    
+    <script type="module" src="src/app.js"></script>
+    <script type="module" src="src/utils/pwa-helper.js"></script>
+
     <!-- Tailwind Enhancements -->
     <script>
       // Global functions
       function scrollToUpload() {
-        document.getElementById('upload-section').scrollIntoView({ behavior: 'smooth' });
+        document
+          .getElementById("upload-section")
+          .scrollIntoView({ behavior: "smooth" });
       }
-      
+
       function openHelpModal() {
-        document.getElementById('help-modal').classList.remove('hidden');
+        document.getElementById("help-modal").classList.remove("hidden");
       }
-      
+
       function closeHelpModal() {
-        document.getElementById('help-modal').classList.add('hidden');
+        document.getElementById("help-modal").classList.add("hidden");
       }
-      
+
       function openDemoModal() {
-        alert('Demo será implementado em breve! Por enquanto, experimente fazendo upload dos seus dados.');
+        alert(
+          "Demo será implementado em breve! Por enquanto, experimente fazendo upload dos seus dados."
+        );
       }
-      
+
       // Tab functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        
-        tabButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-bs-target');
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabPanes = document.querySelectorAll(".tab-pane");
+
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const targetId = button.getAttribute("data-bs-target");
             const target = document.getElementById(targetId.substring(1));
-            
+
             // Remove active classes
-            tabButtons.forEach(btn => {
-              btn.classList.remove('active', 'border-purple-500');
-              btn.classList.add('border-transparent');
+            tabButtons.forEach((btn) => {
+              btn.classList.remove("active", "border-purple-500");
+              btn.classList.add("border-transparent");
             });
-            tabPanes.forEach(pane => {
-              pane.classList.add('hidden');
-              pane.classList.remove('active');
+            tabPanes.forEach((pane) => {
+              pane.classList.add("hidden");
+              pane.classList.remove("active");
             });
-            
+
             // Add active classes
-            button.classList.add('active', 'border-purple-500');
-            button.classList.remove('border-transparent');
-            target.classList.remove('hidden');
-            target.classList.add('active');
+            button.classList.add("active", "border-purple-500");
+            button.classList.remove("border-transparent");
+            target.classList.remove("hidden");
+            target.classList.add("active");
           });
         });
       });
-      
+
       // Fallback for legacy app
-      window.loadLegacyApp = function() {
-        const script = document.createElement('script');
-        script.src = 'app.js';
+      window.loadLegacyApp = function () {
+        const script = document.createElement("script");
+        script.src = "app.js";
         document.head.appendChild(script);
       };
-      
+
       // Service Worker
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("sw.js", { scope: "/" })
+            .register("public/sw.js", { scope: "/" })
             .catch(() => {});
         });
       }
