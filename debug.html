@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaChecker - Diagnóstico</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #0f172a; 
+            color: #fff; 
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .status { 
+            background: #1e293b; 
+            padding: 1rem; 
+            border-radius: 8px; 
+            margin: 1rem 0;
+            border-left: 4px solid #10b981;
+        }
+        .error { border-left-color: #ef4444; }
+        .warning { border-left-color: #f59e0b; }
+        pre { 
+            background: #000; 
+            padding: 1rem; 
+            border-radius: 4px; 
+            overflow-x: auto; 
+            font-size: 0.875rem;
+        }
+        .btn {
+            background: #6366f1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 InstaChecker v2.0 - Diagnóstico</h1>
+    
+    <div class="status">
+        <h3>📍 Informações da URL</h3>
+        <pre id="url-info"></pre>
+    </div>
+    
+    <div class="status">
+        <h3>🌐 Status de Recursos</h3>
+        <div id="resource-status"></div>
+    </div>
+    
+    <div class="status">
+        <h3>🚀 Links de Acesso</h3>
+        <a href="/instachecker/" class="btn">Versão Principal</a>
+        <a href="https://instachecker-nu.vercel.app" class="btn" target="_blank">Vercel Deploy</a>
+        <a href="https://victorbrandao.tech/instachecker" class="btn" target="_blank">Domínio Customizado</a>
+    </div>
+    
+    <div class="status">
+        <h3>📋 Arquivos Críticos</h3>
+        <div id="files-status"></div>
+    </div>
+
+    <script>
+        // Informações da URL
+        document.getElementById('url-info').textContent = JSON.stringify({
+            href: location.href,
+            origin: location.origin,
+            pathname: location.pathname,
+            host: location.host,
+            protocol: location.protocol
+        }, null, 2);
+
+        // Verificar status de recursos
+        const resources = [
+            '/instachecker/styles.css',
+            '/instachecker/app-new.js', 
+            '/instachecker/app-v2-enhancements.js',
+            '/instachecker/manifest.webmanifest',
+            '/instachecker/assets/instachecker-icon.svg'
+        ];
+
+        const resourceStatus = document.getElementById('resource-status');
+        const filesStatus = document.getElementById('files-status');
+
+        resources.forEach(async (resource) => {
+            try {
+                const response = await fetch(resource);
+                const status = response.ok ? '✅' : '❌';
+                const div = document.createElement('div');
+                div.innerHTML = `${status} ${resource} - ${response.status}`;
+                div.className = response.ok ? 'status' : 'status error';
+                resourceStatus.appendChild(div);
+            } catch (error) {
+                const div = document.createElement('div');
+                div.innerHTML = `❌ ${resource} - Error: ${error.message}`;
+                div.className = 'status error';
+                resourceStatus.appendChild(div);
+            }
+        });
+
+        // Verificar se Service Worker está registrado
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                const div = document.createElement('div');
+                div.innerHTML = `🔧 Service Workers: ${registrations.length}`;
+                div.className = 'status';
+                filesStatus.appendChild(div);
+            });
+        }
+
+        // Verificar se é PWA
+        window.addEventListener('beforeinstallprompt', (e) => {
+            const div = document.createElement('div');
+            div.innerHTML = '📱 PWA Instalável: ✅';
+            div.className = 'status';
+            filesStatus.appendChild(div);
+        });
+    </script>
+</body>
+</html>
